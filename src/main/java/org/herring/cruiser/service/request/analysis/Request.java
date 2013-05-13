@@ -1,4 +1,4 @@
-package org.herring.cruiser.request.analysis;
+package org.herring.cruiser.service.request.analysis;
 
 import java.io.InputStream;
 

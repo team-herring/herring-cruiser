@@ -1,4 +1,4 @@
-package org.herring.cruiser.request.analysis;
+package org.herring.cruiser.service.request.analysis;
 
 import java.io.InputStream;
 
@@ -11,6 +11,11 @@ import java.io.InputStream;
 public class RequestBuffred implements Request {
     @Override
     public void analysis(InputStream in) throws Exception {
+
+    }
+
+    @Override
+    public void close() {
 
     }
 }

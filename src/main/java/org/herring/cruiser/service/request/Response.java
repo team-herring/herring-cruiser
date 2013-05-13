@@ -1,4 +1,4 @@
-package org.herring.cruiser.request;
+package org.herring.cruiser.service.request;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
