@@ -1,14 +1,12 @@
 package org.herring.cruiser;
 
 
-import org.herring.cruiser.request.Response;
-import org.herring.cruiser.request.analysis.Request;
-import org.herring.cruiser.request.analysis.RequestRMI;
-import org.herring.cruiser.service.HerringService;
+import org.herring.cruiser.service.request.Response;
+import org.herring.cruiser.service.request.analysis.Request;
+import org.herring.cruiser.service.request.analysis.RequestRMI;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Map;
 
 /**
  * Description.
@@ -17,12 +15,10 @@ import java.util.Map;
  * @since 1.0
  */
 public class HerringCruiserDispacher implements Runnable {
-    private final Map<String, HerringService> serviceMap;
     private Socket socket;
     private Request request;
 
-    public HerringCruiserDispacher(Map<String, HerringService> serviceMap, Socket socket) {
-        this.serviceMap = serviceMap;
+    public HerringCruiserDispacher(Socket socket) {
         this.socket= socket;
         this.request = new RequestRMI();
     }
