@@ -1,5 +1,6 @@
 package org.herring.cruiser.service;
 
+import org.herring.cruiser.service.next.Next;
 import org.herring.cruiser.service.request.Request;
 
 /**
@@ -10,7 +11,7 @@ import org.herring.cruiser.service.request.Request;
  */
 public class RegistJob implements CruiserService {
     @Override
-    public void service(Request request) {
+    public void service(Request request, Next next) {
 
     }
 }

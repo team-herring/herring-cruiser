@@ -10,21 +10,17 @@ import java.nio.ByteBuffer;
  * @author Youngdeok Kim
  * @since 1.0
  */
-public class RequestNext implements Request {
+public class NextRequest implements Request {
     private final String id;
     private final ByteBuffer command;
     private final ByteBuffer data;
     private final int size;
 
-    public RequestNext(Request request,int command,  ByteBuffer data) {
+    public NextRequest(Request request, int command, ByteBuffer data) {
         this.id = request.getID();
         this.command = ByteBuffer.allocate(4).putInt(command);
         this.data = data;
         this.size = data.capacity();
-    }
-
-    @Override
-    public void analysis(byte[] bytes) throws Exception {
     }
 
     @Override

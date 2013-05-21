@@ -3,7 +3,7 @@ package org.herring.cruiser.service.next;
 import org.herring.cruiser.container.CruiserServiceContainer;
 import org.herring.cruiser.service.CruiserService;
 import org.herring.cruiser.service.request.Request;
-import org.herring.cruiser.service.request.analysis.RequestNext;
+import org.herring.cruiser.service.request.analysis.NextRequest;
 
 import java.nio.ByteBuffer;
 
@@ -15,8 +15,8 @@ import java.nio.ByteBuffer;
  */
 public class Next {
     public void nextService(Request request, int command, ByteBuffer buffer) throws Exception {
-        RequestNext requestNext = new RequestNext(request, command, buffer);
-        CruiserService cruiserService = CruiserServiceContainer.findCruiseService(requestNext);
-        cruiserService.service(requestNext);
+        NextRequest nextRequest = new NextRequest(request, command, buffer);
+        CruiserService cruiserService = CruiserServiceContainer.findCruiseService(nextRequest);
+        cruiserService.service(nextRequest);
     }
 }
