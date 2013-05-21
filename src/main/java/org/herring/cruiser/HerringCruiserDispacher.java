@@ -1,12 +1,9 @@
 package org.herring.cruiser;
 
 
-import org.herring.cruiser.service.request.Response;
-import org.herring.cruiser.service.request.analysis.Request;
-import org.herring.cruiser.service.request.analysis.RequestRMI;
-
-import java.io.IOException;
-import java.net.Socket;
+import org.herring.cruiser.container.CruiserServiceContainer;
+import org.herring.cruiser.service.CruiserService;
+import org.herring.cruiser.service.request.Request;
 
 /**
  * Description.
@@ -15,31 +12,15 @@ import java.net.Socket;
  * @since 1.0
  */
 public class HerringCruiserDispacher implements Runnable {
-    private Socket socket;
     private Request request;
 
-    public HerringCruiserDispacher(Socket socket) {
-        this.socket= socket;
-        this.request = new RequestRMI();
+    public HerringCruiserDispacher(Request request) {
+        this.request = request;
     }
 
     @Override
     public void run() {
-        Response response = null;
-        try {
-            request.analysis(socket.getInputStream());
-            response = new Response(socket.getOutputStream());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            assert request != null;
-            assert response != null;
-            request.close();
-            response.close();
-        }
-
+        CruiserService cruiserService = CruiserServiceContainer.findCruiseService(request);
+        cruiserService.service(request);
     }
 }
