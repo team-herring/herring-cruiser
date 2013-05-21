@@ -1,6 +1,4 @@
-package org.herring.cruiser.service.request.analysis;
-
-import org.herring.cruiser.service.request.Request;
+package org.herring.cruiser.service.request;
 
 import java.nio.ByteBuffer;
 

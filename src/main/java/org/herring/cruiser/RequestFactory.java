@@ -1,7 +1,7 @@
 package org.herring.cruiser;
 
 import org.herring.cruiser.service.request.Request;
-import org.herring.cruiser.service.request.analysis.ByteArrayRequest;
+import org.herring.cruiser.service.request.ByteArrayRequest;
 
 /**
  * Description.
