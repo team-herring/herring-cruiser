@@ -6,6 +6,6 @@ package org.herring.cruiser.job;
  * @author Youngdeok Kim
  * @since 1.0
  */
-public class Job {
+public class JobManager {
 
 }

@@ -1,4 +1,4 @@
-package org.herring.cruiser;
+package org.herring.cruiser.network;
 
 import org.herring.protocol.NetworkContext;
 import org.herring.protocol.ServerComponent;
@@ -10,18 +10,19 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 /**
- * Description.
+ * Herring Protocol Framework를 활용한 Echo Server 예제이다. Herring Client에서 전송된 내용을 그대로 돌려보내준다.
  *
- * @author Youngdeok Kim
- * @since 1.0
+ * @author Chiwan Park
+ * @since 0.1
  */
-public class HerringCruiserServer {
+public class EchoServerSample {
+
     private final static int port = 9928;
 
     private ServerComponent serverComponent;
 
     public static void main(String[] args) throws Exception {
-        HerringCruiserServer serverInstance = new HerringCruiserServer();
+        EchoServerSample serverInstance = new EchoServerSample();
 
         HerringCodec codec = new SerializableCodec();
 
