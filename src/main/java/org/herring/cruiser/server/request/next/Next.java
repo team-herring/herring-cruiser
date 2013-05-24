@@ -1,9 +1,9 @@
-package org.herring.cruiser.service.next;
+package org.herring.cruiser.server.request.next;
 
 import org.herring.cruiser.container.CruiserServiceContainer;
-import org.herring.cruiser.service.CruiserService;
-import org.herring.cruiser.service.request.Request;
-import org.herring.cruiser.service.request.NextRequest;
+import org.herring.cruiser.server.service.receive.CruiserService;
+import org.herring.cruiser.server.request.Request;
+import org.herring.cruiser.server.request.NextRequest;
 
 import java.nio.ByteBuffer;
 

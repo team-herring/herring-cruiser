@@ -1,4 +1,4 @@
-package org.herring.cruiser.service.request;
+package org.herring.cruiser.server.request;
 
 import org.herring.core.cruiser.model.RequestPolicy;
 

@@ -1,10 +1,10 @@
-package org.herring.cruiser;
+package org.herring.cruiser.server.service;
 
 
 import org.herring.cruiser.container.CruiserServiceContainer;
-import org.herring.cruiser.service.CruiserService;
-import org.herring.cruiser.service.next.Next;
-import org.herring.cruiser.service.request.Request;
+import org.herring.cruiser.server.service.receive.CruiserService;
+import org.herring.cruiser.server.request.next.Next;
+import org.herring.cruiser.server.request.Request;
 
 /**
  * Description.

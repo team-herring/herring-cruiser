@@ -1,4 +1,4 @@
-package org.herring.cruiser.navigation;
+package org.herring.cruiser.container.navigation;
 
 import java.util.HashMap;
 import java.util.Map;

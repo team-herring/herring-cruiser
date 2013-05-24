@@ -1,4 +1,4 @@
-package org.herring.cruiser.job;
+package org.herring.cruiser.container.job;
 
 /**
  * Description.

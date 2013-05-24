@@ -1,7 +1,7 @@
 package org.herring.cruiser.container;
 
-import org.herring.cruiser.service.CruiserService;
-import org.herring.cruiser.service.request.Request;
+import org.herring.cruiser.server.service.receive.CruiserService;
+import org.herring.cruiser.server.request.Request;
 
 import java.util.ArrayList;
 import java.util.List;
