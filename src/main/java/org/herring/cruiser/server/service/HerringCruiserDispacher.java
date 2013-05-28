@@ -24,5 +24,6 @@ public class HerringCruiserDispacher implements Runnable {
     public void run() {
         CruiserService cruiserService = CruiserServiceContainer.findCruiseService(request);
         cruiserService.service(request, response);
+        response.close();
     }
 }

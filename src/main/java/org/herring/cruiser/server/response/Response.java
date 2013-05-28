@@ -23,7 +23,12 @@ public class Response {
     }
 
     public void sendObject(Object data, MessageHandler messageHandler){
+        this.messageHandler = messageHandler;
         context.sendObject(data, messageHandler);
+    }
+
+    public void close(){
+        context.close(messageHandler);
     }
 
 }
