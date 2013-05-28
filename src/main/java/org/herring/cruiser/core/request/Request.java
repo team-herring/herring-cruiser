@@ -9,6 +9,6 @@ package org.herring.cruiser.core.request;
 public interface Request<T> {
     public int getSize();
     public String getCommand();
-    public String getID();
+    public String getJobID();
     public T getData();
 }

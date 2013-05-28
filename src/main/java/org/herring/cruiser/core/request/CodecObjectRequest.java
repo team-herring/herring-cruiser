@@ -33,7 +33,7 @@ public class CodecObjectRequest implements Request<JobCommand> {
     }
 
     @Override
-    public String getID() {
+    public String getJobID() {
         return this.uuid;
     }
 

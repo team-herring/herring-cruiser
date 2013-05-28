@@ -14,5 +14,6 @@ public class JobRegist implements CruiserService {
 
     @Override
     public void service(Request request, Response response) {
+
     }
 }

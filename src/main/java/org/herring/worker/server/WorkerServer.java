@@ -1,14 +1,14 @@
 package org.herring.worker.server;
 
-import org.herring.worker.setting.WorkerSetting;
+import org.herring.cruiser.core.codec.HerringCruiserCodec;
+import org.herring.cruiser.core.request.Request;
+import org.herring.cruiser.core.response.Response;
+import org.herring.cruiser.server.service.HerringCruiserDispacher;
 import org.herring.protocol.NetworkContext;
 import org.herring.protocol.ServerComponent;
 import org.herring.protocol.codec.HerringCodec;
-import org.herring.protocol.codec.SerializableCodec;
 import org.herring.protocol.handler.MessageHandler;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import org.herring.worker.setting.WorkerSetting;
 
 /**
  * Description.
@@ -23,17 +23,15 @@ public class WorkerServer {
     public static void main(String[] args) throws Exception {
         WorkerServer serverInstance = new WorkerServer();
 
-        HerringCodec codec = new SerializableCodec();
+        HerringCodec codec = new HerringCruiserCodec();
 
         MessageHandler handler = new MessageHandler() {
             @Override
             public void messageArrived(NetworkContext context, Object data) throws Exception {
-                if ("bye".equalsIgnoreCase((String) data)) {
-                    context.close(this);
-                    return;
-                }
-
-                context.sendObject(data, this);
+                Request request = (Request) data;
+                Response response = new Response(context, this);
+                HerringCruiserDispacher dispacher = new HerringCruiserDispacher(request, response);
+                dispacher.run();
             }
 
             @Override
@@ -55,11 +53,8 @@ public class WorkerServer {
         try {
             serverInstance.serverComponent = new ServerComponent(port, codec, handler);
             serverInstance.serverComponent.start();
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-            while (!"bye".equalsIgnoreCase(in.readLine())) ;
-        } finally {
-            serverInstance.serverComponent.stop();
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

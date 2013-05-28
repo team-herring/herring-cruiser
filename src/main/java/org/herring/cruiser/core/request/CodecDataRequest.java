@@ -28,7 +28,7 @@ public class CodecDataRequest implements Request<ByteBuffer>{
     }
 
     @Override
-    public String getID() {
+    public String getJobID() {
         return null;
     }
 

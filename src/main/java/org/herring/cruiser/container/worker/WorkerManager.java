@@ -10,21 +10,22 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 1.0
  */
 public class WorkerManager {
-    private static Map<String, CruiserSerivce> navigationMap;
+    private static Map<String, Worker> navigationMap;
 
     static {
-        navigationMap = new ConcurrentHashMap<String, CruiserSerivce>();
+        navigationMap = new ConcurrentHashMap<String, Worker>();
+        navigationMap.put("test", new Worker("localhost", 8855));
     }
 
-    public static void regist(String name, CruiserSerivce cruiserSerivce){
+    public static void regist(String name, Worker cruiserSerivce){
         navigationMap.put(name, cruiserSerivce);
     }
 
-    public static CruiserSerivce find(String name){
+    public static Worker find(String name){
         return navigationMap.get(name);
     }
 
-    public static CruiserSerivce get(){
-        return navigationMap.get("basic");
+    public static Worker get(){
+        return navigationMap.get("test");
     }
 }

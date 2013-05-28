@@ -11,12 +11,13 @@ import java.io.Serializable;
 public class JobCommand implements Serializable{
     private static final long serialVersionUID = -295417751909939119L;
     private String command;
-    private int next;
-    private long jobId;
+    private String nextServerIP;
+    private int nextServerPort;
+    private String jobId;
 
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
+    public JobCommand(String jobId, String command) {
+        this.jobId = jobId;
+        this.command = command;
     }
 
     public String getCommand() {
@@ -27,51 +28,37 @@ public class JobCommand implements Serializable{
         this.command = command;
     }
 
-    public int getNext() {
-        return next;
-    }
-
-    public void setNext(int next) {
-        this.next = next;
-    }
-
-    public long getJobId() {
+    public String getJobId() {
         return jobId;
     }
 
-    public void setJobId(long jobId) {
+    public void setJobId(String jobId) {
         this.jobId = jobId;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        JobCommand that = (JobCommand) o;
-
-        if (jobId != that.jobId) return false;
-        if (next != that.next) return false;
-        if (command != null ? !command.equals(that.command) : that.command != null) return false;
-
-        return true;
+    public String getNextServerIP() {
+        return nextServerIP;
     }
 
-    @Override
-    public int hashCode() {
-        int result = command != null ? command.hashCode() : 0;
-        result = 31 * result + next;
-        result = 31 * result + (int) (jobId ^ (jobId >>> 32));
-        return result;
+    public void setNextServerIP(String nextServerIP) {
+        this.nextServerIP = nextServerIP;
+    }
+
+    public int getNextServerPort() {
+        return nextServerPort;
+    }
+
+    public void setNextServerPort(int nextServerPort) {
+        this.nextServerPort = nextServerPort;
     }
 
     @Override
     public String toString() {
         return "JobCommand{" +
                 "command='" + command + '\'' +
-                ", next=" + next +
-                ", jobId=" + jobId +
+                ", nextServerIP='" + nextServerIP + '\'' +
+                ", nextServerPort=" + nextServerPort +
+                ", jobId='" + jobId + '\'' +
                 '}';
     }
 }

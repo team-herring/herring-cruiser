@@ -5,6 +5,8 @@ import org.herring.cruiser.container.CruiserServiceContainer;
 import org.herring.cruiser.core.request.Request;
 import org.herring.cruiser.core.response.Response;
 
+import java.io.IOException;
+
 /**
  * Description.
  *
@@ -23,7 +25,11 @@ public class HerringCruiserDispacher implements Runnable {
     @Override
     public void run() {
         CruiserService cruiserService = CruiserServiceContainer.findCruiseService(request);
-        cruiserService.service(request, response);
+        try {
+            cruiserService.service(request, response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         response.close();
     }
 }
