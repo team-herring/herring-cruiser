@@ -1,4 +1,4 @@
-package org.herring.cruiser.server.request;
+package org.herring.cruiser.core.request;
 
 import org.herring.cruiser.core.model.JobCommand;
 import java.io.ByteArrayInputStream;

@@ -1,4 +1,4 @@
-package org.herring.cruiser.server.request;
+package org.herring.cruiser.core.request;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

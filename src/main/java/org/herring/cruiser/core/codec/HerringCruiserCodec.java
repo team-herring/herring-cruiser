@@ -1,6 +1,6 @@
 package org.herring.cruiser.core.codec;
 
-import org.herring.cruiser.server.request.HerringRequestSelector;
+import org.herring.cruiser.core.request.HerringRequestSelector;
 import org.herring.protocol.codec.HerringCodec;
 
 import java.nio.ByteBuffer;

@@ -1,4 +1,4 @@
-package org.herring.cruiser.server.request;
+package org.herring.cruiser.core.request;
 
 import java.nio.ByteBuffer;
 

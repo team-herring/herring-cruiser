@@ -1,8 +1,7 @@
 package org.herring.cruiser.server.service;
 
-import org.herring.cruiser.server.request.Request;
+import org.herring.cruiser.core.request.Request;
 import org.herring.cruiser.server.response.Response;
-import org.herring.protocol.NetworkContext;
 
 /**
  * Description.

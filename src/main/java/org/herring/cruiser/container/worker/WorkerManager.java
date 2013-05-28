@@ -10,21 +10,21 @@ import java.util.Map;
  * @since 1.0
  */
 public class WorkerManager {
-    private static Map<String, Worker> navigationMap;
+    private static Map<String, CruiserSerivce> navigationMap;
 
     static {
-        navigationMap = new HashMap<String, Worker>();
+        navigationMap = new HashMap<String, CruiserSerivce>();
     }
 
-    public static void regist(String name, Worker worker){
-        navigationMap.put(name, worker);
+    public static void regist(String name, CruiserSerivce cruiserSerivce){
+        navigationMap.put(name, cruiserSerivce);
     }
 
-    public static Worker find(String name){
+    public static CruiserSerivce find(String name){
         return navigationMap.get(name);
     }
 
-    public static Worker get(){
+    public static CruiserSerivce get(){
         return navigationMap.get("basic");
     }
 }

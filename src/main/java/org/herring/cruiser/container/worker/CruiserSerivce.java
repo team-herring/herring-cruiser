@@ -9,11 +9,11 @@ import org.herring.cruiser.core.model.JobCommand;
  * @author Youngdeok Kim
  * @since 1.0
  */
-public class Worker {
+public class CruiserSerivce {
     private String ip;
     private int port;
 
-    public Worker(String ip, int port) {
+    public CruiserSerivce(String ip, int port) {
         this.ip = ip;
         this.port = port;
     }

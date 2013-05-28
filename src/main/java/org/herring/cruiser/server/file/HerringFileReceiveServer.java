@@ -1,7 +1,7 @@
 package org.herring.cruiser.server.file;
 
 import org.herring.cruiser.core.codec.HerringCruiserCodec;
-import org.herring.cruiser.server.request.Request;
+import org.herring.cruiser.core.request.Request;
 import org.herring.cruiser.server.response.Response;
 import org.herring.cruiser.server.service.HerringCruiserDispacher;
 import org.herring.protocol.NetworkContext;
