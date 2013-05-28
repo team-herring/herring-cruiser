@@ -21,4 +21,9 @@ public class Response {
     public void sendObject(Object data){
         context.sendObject(data, messageHandler);
     }
+
+    public void sendObject(Object data, MessageHandler messageHandler){
+        context.sendObject(data, messageHandler);
+    }
+
 }
