@@ -3,7 +3,7 @@ package org.herring.cruiser.server.service;
 
 import org.herring.cruiser.container.CruiserServiceContainer;
 import org.herring.cruiser.server.request.Request;
-import org.herring.protocol.NetworkContext;
+import org.herring.cruiser.server.response.Response;
 
 /**
  * Description.
@@ -13,16 +13,16 @@ import org.herring.protocol.NetworkContext;
  */
 public class HerringCruiserDispacher implements Runnable {
     private final Request request;
-    private final NetworkContext context;
+    private final Response response;
 
-    public HerringCruiserDispacher(NetworkContext context, Request request) {
+    public HerringCruiserDispacher(Request request, Response response) {
         this.request = request;
-        this.context = context;
+        this.response = response;
     }
 
     @Override
     public void run() {
         CruiserService cruiserService = CruiserServiceContainer.findCruiseService(request);
-        cruiserService.service(context, request);
+        cruiserService.service(request, response);
     }
 }

@@ -1,8 +1,8 @@
 package org.herring.cruiser.server.service.job;
 
 import org.herring.cruiser.server.request.Request;
+import org.herring.cruiser.server.response.Response;
 import org.herring.cruiser.server.service.CruiserService;
-import org.herring.protocol.NetworkContext;
 
 /**
  * Description.
@@ -13,7 +13,7 @@ import org.herring.protocol.NetworkContext;
 public class JobServiceSimple implements CruiserService {
 
     @Override
-    public void service(NetworkContext context, Request request) {
+    public void service(Request request, Response response) {
 
     }
 }
