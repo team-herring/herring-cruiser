@@ -1,4 +1,4 @@
-package org.herring.cruiser.server.response;
+package org.herring.cruiser.core.response;
 
 import org.herring.protocol.NetworkContext;
 import org.herring.protocol.handler.MessageHandler;

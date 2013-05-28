@@ -3,7 +3,7 @@ package org.herring.cruiser.server.service.file;
 import org.herring.cruiser.container.worker.CruiserSerivce;
 import org.herring.cruiser.container.worker.WorkerManager;
 import org.herring.cruiser.core.request.Request;
-import org.herring.cruiser.server.response.Response;
+import org.herring.cruiser.core.response.Response;
 import org.herring.cruiser.server.service.CruiserService;
 
 /**

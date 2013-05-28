@@ -1,7 +1,7 @@
 package org.herring.cruiser.server.service.job;
 
 import org.herring.cruiser.core.request.Request;
-import org.herring.cruiser.server.response.Response;
+import org.herring.cruiser.core.response.Response;
 import org.herring.cruiser.server.service.CruiserService;
 
 /**
