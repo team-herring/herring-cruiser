@@ -23,4 +23,8 @@ public class WorkerManager {
     public static Worker find(String name){
         return navigationMap.get(name);
     }
+
+    public static Worker get(){
+        return navigationMap.get("basic");
+    }
 }
