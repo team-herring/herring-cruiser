@@ -1,7 +1,7 @@
 package org.herring.cruiser.container.worker;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Description.
@@ -13,7 +13,7 @@ public class WorkerManager {
     private static Map<String, CruiserSerivce> navigationMap;
 
     static {
-        navigationMap = new HashMap<String, CruiserSerivce>();
+        navigationMap = new ConcurrentHashMap<String, CruiserSerivce>();
     }
 
     public static void regist(String name, CruiserSerivce cruiserSerivce){
