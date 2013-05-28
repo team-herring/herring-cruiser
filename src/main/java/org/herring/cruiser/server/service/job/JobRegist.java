@@ -10,10 +10,14 @@ import org.herring.cruiser.server.service.CruiserService;
  * @author Youngdeok Kim
  * @since 1.0
  */
-public class JobServiceSimple implements CruiserService {
+public class JobRegist implements CruiserService {
 
     @Override
     public void service(Request request, Response response) {
+
+
+
+
 
     }
 }
