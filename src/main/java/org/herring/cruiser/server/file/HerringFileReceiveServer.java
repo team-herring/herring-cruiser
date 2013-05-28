@@ -1,13 +1,12 @@
-package org.herring.cruiser.server;
+package org.herring.cruiser.server.file;
 
+import org.herring.cruiser.core.codec.HerringCruiserCodec;
+import org.herring.cruiser.server.request.Request;
+import org.herring.cruiser.server.service.HerringCruiserDispacher;
 import org.herring.protocol.NetworkContext;
 import org.herring.protocol.ServerComponent;
 import org.herring.protocol.codec.HerringCodec;
-import org.herring.protocol.codec.SerializableCodec;
 import org.herring.protocol.handler.MessageHandler;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 /**
  * Description.
@@ -15,25 +14,22 @@ import java.io.InputStreamReader;
  * @author Youngdeok Kim
  * @since 1.0
  */
-public class HerringCruiserServer {
+public class HerringFileReceiveServer {
     private final static int port = 9928;
 
     private ServerComponent serverComponent;
 
     public static void main(String[] args) throws Exception {
-        HerringCruiserServer serverInstance = new HerringCruiserServer();
+        HerringFileReceiveServer serverInstance = new HerringFileReceiveServer();
 
-        HerringCodec codec = new SerializableCodec();
+        HerringCodec codec = new HerringCruiserCodec();
 
         MessageHandler handler = new MessageHandler() {
             @Override
             public void messageArrived(NetworkContext context, Object data) throws Exception {
-                if ("bye".equalsIgnoreCase((String) data)) {
-                    context.close(this);
-                    return;
-                }
-
-                context.sendObject(data, this);
+                Request request = (Request) data;
+                HerringCruiserDispacher dispacher = new HerringCruiserDispacher(context, request);
+                dispacher.run();
             }
 
             @Override
@@ -55,9 +51,6 @@ public class HerringCruiserServer {
         try {
             serverInstance.serverComponent = new ServerComponent(port, codec, handler);
             serverInstance.serverComponent.start();
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-            while (!"bye".equalsIgnoreCase(in.readLine())) ;
         } finally {
             serverInstance.serverComponent.stop();
         }

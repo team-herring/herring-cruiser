@@ -2,9 +2,9 @@ package org.herring.cruiser.server.service;
 
 
 import org.herring.cruiser.container.CruiserServiceContainer;
-import org.herring.cruiser.server.service.receive.CruiserService;
-import org.herring.cruiser.server.request.next.Next;
 import org.herring.cruiser.server.request.Request;
+import org.herring.cruiser.server.service.receive.CruiserService;
+import org.herring.protocol.NetworkContext;
 
 /**
  * Description.
@@ -13,17 +13,17 @@ import org.herring.cruiser.server.request.Request;
  * @since 1.0
  */
 public class HerringCruiserDispacher implements Runnable {
-    private final Next next;
     private final Request request;
+    private final NetworkContext context;
 
-    public HerringCruiserDispacher(Request request) {
+    public HerringCruiserDispacher(NetworkContext context, Request request) {
         this.request = request;
-        this.next = new Next();
+        this.context = context;
     }
 
     @Override
     public void run() {
         CruiserService cruiserService = CruiserServiceContainer.findCruiseService(request);
-        cruiserService.service(request, next);
+        cruiserService.service(context, request);
     }
 }

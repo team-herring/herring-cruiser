@@ -1,7 +1,7 @@
 package org.herring.cruiser.server.service.receive;
 
-import org.herring.cruiser.server.request.next.Next;
 import org.herring.cruiser.server.request.Request;
+import org.herring.protocol.NetworkContext;
 
 /**
  * Description.
@@ -10,5 +10,5 @@ import org.herring.cruiser.server.request.Request;
  * @since 1.0
  */
 public interface CruiserService {
-    public void service(Request request, Next next);
+    public void service(NetworkContext context, Request request);
 }

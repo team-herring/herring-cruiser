@@ -1,10 +1,10 @@
 package org.herring.cruiser.container;
 
-import org.herring.cruiser.server.service.receive.CruiserService;
 import org.herring.cruiser.server.request.Request;
+import org.herring.cruiser.server.service.receive.CruiserService;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Description.
@@ -13,13 +13,13 @@ import java.util.List;
  * @since 1.0
  */
 public class CruiserServiceContainer {
-    private static List<CruiserService> list;
+    private static Map<String, CruiserService> cruiserService;
 
     static {
-        list = new ArrayList<CruiserService>();
+        cruiserService = new HashMap<String, CruiserService>();
     }
 
     public static CruiserService findCruiseService(Request request){
-        return list.get(request.getCommand());
+        return cruiserService.get(request.getCommand());
     }
 }
