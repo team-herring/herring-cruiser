@@ -1,7 +1,7 @@
 package org.herring.cruiser.container;
 
 import org.herring.cruiser.server.request.Request;
-import org.herring.cruiser.server.service.receive.CruiserService;
+import org.herring.cruiser.server.service.CruiserService;
 
 import java.util.HashMap;
 import java.util.Map;

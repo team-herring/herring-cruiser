@@ -1,4 +1,4 @@
-package org.herring.cruiser.server.service.job;
+package org.herring.cruiser.server.service.file;
 
 import org.herring.cruiser.server.request.Request;
 import org.herring.cruiser.server.service.CruiserService;
@@ -10,10 +10,9 @@ import org.herring.protocol.NetworkContext;
  * @author Youngdeok Kim
  * @since 1.0
  */
-public class JobServiceSimple implements CruiserService {
-
+public class RegistFileTrasfer implements CruiserService {
     @Override
-    public void service(NetworkContext context, Request request) {
+    public void service(NetworkContext context, Request request){
 
     }
 }

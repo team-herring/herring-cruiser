@@ -1,4 +1,4 @@
-package org.herring.cruiser.server.service.receive;
+package org.herring.cruiser.server.service;
 
 import org.herring.cruiser.server.request.Request;
 import org.herring.protocol.NetworkContext;
