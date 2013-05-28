@@ -1,6 +1,6 @@
-package org.herring.navigation.server;
+package org.herring.worker.server;
 
-import org.herring.navigation.setting.NavigationSetting;
+import org.herring.worker.setting.WorkerSetting;
 import org.herring.protocol.NetworkContext;
 import org.herring.protocol.ServerComponent;
 import org.herring.protocol.codec.HerringCodec;
@@ -16,12 +16,12 @@ import java.io.InputStreamReader;
  * @author Youngdeok Kim
  * @since 1.0
  */
-public class NavigationServer {
-    private final static int port = NavigationSetting.PORT;
+public class WorkerServer {
+    private final static int port = WorkerSetting.PORT;
     private ServerComponent serverComponent;
 
     public static void main(String[] args) throws Exception {
-        NavigationServer serverInstance = new NavigationServer();
+        WorkerServer serverInstance = new WorkerServer();
 
         HerringCodec codec = new SerializableCodec();
 

@@ -1,4 +1,4 @@
-package org.herring.navigation.setting;
+package org.herring.worker.setting;
 
 /**
  * Description.
@@ -6,6 +6,6 @@ package org.herring.navigation.setting;
  * @author Youngdeok Kim
  * @since 1.0
  */
-public class NavigationSetting {
+public class WorkerSetting {
     public static final int PORT = 8855;
 }
