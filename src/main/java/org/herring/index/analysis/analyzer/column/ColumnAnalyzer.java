@@ -1,6 +1,6 @@
 package org.herring.index.analysis.analyzer.column;
 
-import org.herring.analysis.analyzer.Analyzer;
+import org.herring.index.analysis.analyzer.Analyzer;
 
 /**
  * Description.

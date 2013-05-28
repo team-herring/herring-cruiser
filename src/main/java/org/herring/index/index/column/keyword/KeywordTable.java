@@ -1,7 +1,7 @@
 package org.herring.index.index.column.keyword;
 
-import org.herring.file.reader.FileReader;
-import org.herring.file.writer.FileWriter;
+import org.herring.index.file.reader.FileReader;
+import org.herring.index.file.writer.FileWriter;
 
 import java.io.IOException;
 

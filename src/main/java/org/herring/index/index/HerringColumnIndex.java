@@ -1,15 +1,15 @@
 package org.herring.index.index;
 
-import org.herring.file.writer.FileWriterFileChannel;
-import org.herring.file.writer.FileWriterWritableByteChannel;
-import org.herring.index.column.Column;
-import org.herring.index.column.ColumnTable;
-import org.herring.index.column.index.writer.IndexWriterMemoryList;
-import org.herring.index.column.keyword.KeywordTableMemoryList;
-import org.herring.index.row.Row;
-import org.herring.index.row.RowTable;
-import org.herring.index.row.RowTableList;
-import org.herring.index.row.RowTableSimple;
+import org.herring.index.file.writer.FileWriterFileChannel;
+import org.herring.index.file.writer.FileWriterWritableByteChannel;
+import org.herring.index.index.column.Column;
+import org.herring.index.index.column.ColumnTable;
+import org.herring.index.index.column.index.writer.IndexWriterMemoryList;
+import org.herring.index.index.column.keyword.KeywordTableMemoryList;
+import org.herring.index.index.row.Row;
+import org.herring.index.index.row.RowTable;
+import org.herring.index.index.row.RowTableList;
+import org.herring.index.index.row.RowTableSimple;
 
 import java.io.File;
 import java.util.List;

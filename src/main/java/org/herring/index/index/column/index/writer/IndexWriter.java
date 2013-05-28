@@ -1,6 +1,6 @@
 package org.herring.index.index.column.index.writer;
 
-import org.herring.index.column.index.Index;
+import org.herring.index.index.column.index.Index;
 
 import java.io.IOException;
 

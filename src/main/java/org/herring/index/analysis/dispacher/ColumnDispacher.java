@@ -1,6 +1,6 @@
 package org.herring.index.analysis.dispacher;
 
-import org.herring.context.ColumnContext;
+import org.herring.index.context.ColumnContext;
 
 import java.util.List;
 

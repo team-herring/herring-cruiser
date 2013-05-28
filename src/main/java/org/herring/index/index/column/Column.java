@@ -1,9 +1,9 @@
 package org.herring.index.index.column;
 
-import org.herring.file.writer.FileWriter;
-import org.herring.index.column.index.Index;
-import org.herring.index.column.index.writer.IndexWriter;
-import org.herring.index.column.keyword.KeywordTable;
+import org.herring.index.file.writer.FileWriter;
+import org.herring.index.index.column.index.Index;
+import org.herring.index.index.column.index.writer.IndexWriter;
+import org.herring.index.index.column.keyword.KeywordTable;
 
 import java.util.List;
 
