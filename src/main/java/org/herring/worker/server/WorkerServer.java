@@ -53,7 +53,7 @@ public class WorkerServer {
         try {
             serverInstance.serverComponent = new ServerComponent(port, codec, handler);
             serverInstance.serverComponent.start();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

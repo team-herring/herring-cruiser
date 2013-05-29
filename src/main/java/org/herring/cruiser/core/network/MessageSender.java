@@ -27,9 +27,11 @@ public class MessageSender {
     }
 
     public void send(ByteBuffer buffer, final EventHandler eventHandler) {
-        buffer.position(0);
-        buffer.put(message);
-        buffer.flip();
+        ByteBuffer messageBuffer = ByteBuffer.allocate(buffer.capacity()+1);
+        messageBuffer.position(1);
+        messageBuffer.put(buffer);
+        messageBuffer.put(0, message);
+        messageBuffer.position(0);
 
 
         HerringCodec codec = new HerringCruiserCodec();
@@ -65,7 +67,7 @@ public class MessageSender {
         try {
             clientComponent = new ClientComponent(ip, port, codec, handler);
             clientComponent.start();
-            clientComponent.getChannel().write(buffer);
+            clientComponent.getChannel().write(messageBuffer);
             clientComponent.getChannel().flush();
         } catch (Exception e) {
             e.printStackTrace();

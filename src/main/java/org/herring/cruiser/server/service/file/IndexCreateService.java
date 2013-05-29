@@ -26,6 +26,7 @@ public class IndexCreateService implements CruiserService {
         worker.takeWork(jobCommand, new EventHandler() {
             @Override
             public void handler(NetworkContext context, Object o) {
+
             }
         });
     }

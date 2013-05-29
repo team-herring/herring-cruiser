@@ -4,7 +4,7 @@ import org.herring.cruiser.core.model.JobCommand;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.nio.ByteBuffer;
+
 /**
  * Description.
  *
@@ -15,8 +15,8 @@ public class CodecObjectRequest implements Request<JobCommand> {
     private String uuid;
     private JobCommand jobCommand;
 
-    public CodecObjectRequest(ByteBuffer byteBuffer) throws IOException, ClassNotFoundException {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(byteBuffer.array());
+    public CodecObjectRequest(byte[] datas) throws IOException, ClassNotFoundException {
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(datas);
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 
         this.jobCommand = (JobCommand) objectInputStream.readObject();
