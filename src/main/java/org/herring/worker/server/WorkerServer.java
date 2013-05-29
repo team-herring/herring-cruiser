@@ -3,7 +3,6 @@ package org.herring.worker.server;
 import org.herring.cruiser.core.codec.HerringCruiserCodec;
 import org.herring.cruiser.core.request.Request;
 import org.herring.cruiser.core.response.Response;
-import org.herring.cruiser.server.service.HerringCruiserDispacher;
 import org.herring.protocol.NetworkContext;
 import org.herring.protocol.ServerComponent;
 import org.herring.protocol.codec.HerringCodec;
@@ -30,7 +29,7 @@ public class WorkerServer {
             public void messageArrived(NetworkContext context, Object data) throws Exception {
                 Request request = (Request) data;
                 Response response = new Response(context, this);
-                HerringCruiserDispacher dispacher = new HerringCruiserDispacher(request, response);
+                HerringWorkerDispacher dispacher = new HerringWorkerDispacher(request, response);
                 dispacher.run();
             }
 

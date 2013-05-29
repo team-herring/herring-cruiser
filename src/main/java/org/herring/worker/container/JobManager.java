@@ -19,11 +19,24 @@ public class JobManager {
         jobCommandMap = new ConcurrentHashMap<String, JobCommand>();
     }
 
-    public static void regist(String uuid, JobCommand jobCommand){
-        jobCommandMap.put(uuid, jobCommand);
+    public static void regist(JobCommand jobCommand) {
+        jobCommandMap.put(jobCommand.getJobId(), jobCommand);
     }
 
-    public static JobCommand find(Request request){
-        return jobCommandMap.get(request.getJobID());
+    public static JobCommand find(Request request) {
+        if (jobCommandMap.containsKey(request.getJobID()))
+            return jobCommandMap.get(request.getJobID());
+        return (JobCommand) request.getData();
+    }
+
+    public static void remove(Request request){
+        jobCommandMap.remove(request.getJobID());
+    }
+    public static void remove(JobCommand jobCommand) {
+        jobCommandMap.remove(jobCommand.getJobId());
+    }
+
+    public static void remove(String uuid) {
+        jobCommandMap.remove(uuid);
     }
 }

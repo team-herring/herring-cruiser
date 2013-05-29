@@ -24,8 +24,12 @@ public class Worker {
         this.port = port;
     }
 
-    public void send(){
+    public String getIp() {
+        return ip;
+    }
 
+    public int getPort() {
+        return port;
     }
 
     public void takeWork(JobCommand jobCommand, EventHandler eventHandler) throws IOException {
@@ -40,5 +44,10 @@ public class Worker {
         ByteBuffer buffer = ByteBuffer.wrap(outputStream.toByteArray());
         MessageSender sender = new MessageSender(ip, port);
         sender.send(buffer, eventHandler);
+    }
+
+    public void nextWorker(Worker worker) {
+        this.ip = worker.getIp();
+        this.port = worker.getPort();
     }
 }

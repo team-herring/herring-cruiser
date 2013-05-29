@@ -14,7 +14,9 @@ public class WorkerManager {
 
     static {
         workerMap = new ConcurrentHashMap<String, Worker>();
-        workerMap.put("test", new Worker("localhost", 8855));
+        workerMap.put("worker1", new Worker("localhost", 8855));
+        workerMap.put("worker2", new Worker("localhost", 8856));
+        workerMap.put("worker3", new Worker("localhost", 8857));
     }
 
     public static void regist(String name, Worker cruiserSerivce){

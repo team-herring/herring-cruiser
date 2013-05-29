@@ -1,6 +1,7 @@
 package org.herring.worker.container;
 
 import org.herring.cruiser.core.request.Request;
+import org.herring.worker.server.service.RegistJobWorker;
 import org.herring.worker.server.service.WorkerService;
 
 import java.util.HashMap;
@@ -17,6 +18,7 @@ public class WorkerContainer {
 
     static {
         workerService = new HashMap<String, WorkerService>();
+        workerService.put("RegistJobWorker", new RegistJobWorker());
     }
 
     public static WorkerService findService(Request request){

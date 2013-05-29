@@ -12,7 +12,6 @@ import java.io.ObjectInputStream;
  * @since 1.0
  */
 public class CodecObjectRequest implements Request<JobCommand> {
-    private String uuid;
     private JobCommand jobCommand;
 
     public CodecObjectRequest(byte[] datas) throws IOException, ClassNotFoundException {
@@ -34,7 +33,7 @@ public class CodecObjectRequest implements Request<JobCommand> {
 
     @Override
     public String getJobID() {
-        return this.uuid;
+        return jobCommand.getJobId();
     }
 
     @Override
