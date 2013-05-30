@@ -1,7 +1,7 @@
 package org.herring.cruiser.core.request;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.nio.ByteBuffer;
 
 /**
  * Description.
@@ -12,14 +12,14 @@ import java.util.Arrays;
 public class HerringRequestSelector {
     public static Request select(byte[] buffer) throws IOException, ClassNotFoundException {
         byte command = buffer[0];
-        byte[] datas = Arrays.copyOfRange(buffer, 1, buffer.length);
+        ByteBuffer datas = ByteBuffer.wrap(buffer, 1, buffer.length);
 
         Request request = null;
         if (command == (byte) 1) {
-            request = new CodecObjectRequest(datas);
+            request = new CodecObjectRequest(datas.array());
         }
         if (command == (byte) 2) {
-            request = new CodecObjectRequest(datas);
+            request = new CodecObjectRequest(datas.array());
         }
 
         return request;
