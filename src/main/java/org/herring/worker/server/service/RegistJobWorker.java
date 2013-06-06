@@ -2,7 +2,7 @@ package org.herring.worker.server.service;
 
 import org.apache.log4j.Logger;
 import org.herring.cruiser.core.model.JobCommand;
-import org.herring.cruiser.core.network.DataSender;
+import org.herring.cruiser.core.network.NextWorker;
 import org.herring.cruiser.core.request.Request;
 import org.herring.cruiser.core.response.Response;
 import org.herring.worker.container.JobManager;
@@ -18,7 +18,7 @@ public class RegistJobWorker implements WorkerService{
     private static final Logger logging= Logger.getLogger(RegistJobWorker.class);
 
     @Override
-    public void service(Request request, Response response, DataSender dataSender) {
+    public void service(Request request, Response response, NextWorker nextWorker) {
         JobCommand jobcommand = (JobCommand) request.getData();
         JobManager.regist(jobcommand);
 

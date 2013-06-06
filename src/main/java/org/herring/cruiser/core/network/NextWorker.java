@@ -16,19 +16,19 @@ import java.nio.ByteBuffer;
  * @author Youngdeok Kim
  * @since 1.0
  */
-public class DataSender {
+public class NextWorker {
     private static final byte message = 1;
     private ClientComponent clientComponent = null;
     private JobCommand jobCommand;
     private String ip;
     private int port;
 
-    public DataSender(String ip, int port) {
+    public NextWorker(String ip, int port) {
         this.ip = ip;
         this.port = port;
     }
 
-    public DataSender(JobCommand jobCommand) {
+    public NextWorker(JobCommand jobCommand) {
         this.ip = jobCommand.getNextServerIP();
         this.port = jobCommand.getNextServerPort();
     }
