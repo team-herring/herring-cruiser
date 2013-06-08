@@ -34,6 +34,10 @@ public class Step {
         chart = service;
     }
 
+    public int getId(){
+        return this.id;
+    }
+
     public void start() {
         for (Service service : services) {
             try {

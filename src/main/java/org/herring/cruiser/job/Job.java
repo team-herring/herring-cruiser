@@ -28,4 +28,8 @@ public class Job {
         for (Step step : steps)
             step.start();
     }
+
+    public int getId(){
+        return this.id;
+    }
 }
