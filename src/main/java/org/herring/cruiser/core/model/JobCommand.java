@@ -1,6 +1,7 @@
 package org.herring.cruiser.core.model;
 
 import java.io.Serializable;
+import java.util.Map;
 
 /**
  * Description.
@@ -10,55 +11,89 @@ import java.io.Serializable;
  */
 public class JobCommand implements Serializable{
     private static final long serialVersionUID = -295417751909939119L;
-    private String command;
-    private String nextServerIP;
-    private int nextServerPort;
-    private String jobId;
+    private int command;
+    private int jobID;
+    private int groupID;
+    private int stepID;
+    private int serviceID;
 
-    public JobCommand(String jobId, String command) {
-        this.jobId = jobId;
-        this.command = command;
+    private int nextGroupID;
+    private int nextStepID;
+    private int nextServiceID;
+    private Map<String, Object> extra;
+
+    public JobCommand() {
     }
 
-    public String getCommand() {
+    public JobCommand(int jobID, int groupID, int stepID, int serviceID) {
+        this.jobID = jobID;
+        this.groupID = groupID;
+        this.stepID = stepID;
+        this.serviceID = serviceID;
+    }
+
+    public int getCommand() {
         return command;
     }
 
-    public void setCommand(String command) {
-        this.command = command;
+    public int getJobID() {
+        return jobID;
     }
 
-    public String getJobId() {
-        return jobId;
+    public int getGroupID() {
+        return groupID;
     }
 
-    public void setJobId(String jobId) {
-        this.jobId = jobId;
+    public int getStepID() {
+        return stepID;
     }
 
-    public String getNextServerIP() {
-        return nextServerIP;
+    public int getServiceID() {
+        return serviceID;
     }
 
-    public void setNextServerIP(String nextServerIP) {
-        this.nextServerIP = nextServerIP;
+    public int getNextGroupID() {
+        return nextGroupID;
     }
 
-    public int getNextServerPort() {
-        return nextServerPort;
+    public void setNextGroupID(int nextGroupID) {
+        this.nextGroupID = nextGroupID;
     }
 
-    public void setNextServerPort(int nextServerPort) {
-        this.nextServerPort = nextServerPort;
+    public int getNextStepID() {
+        return nextStepID;
     }
+
+    public void setNextStepID(int nextStepID) {
+        this.nextStepID = nextStepID;
+    }
+
+    public int getNextServiceID() {
+        return nextServiceID;
+    }
+
+    public void setNextServiceID(int nextServiceID) {
+        this.nextServiceID = nextServiceID;
+    }
+
+    public void putExtra(String key, Object val){
+        this.extra.put(key, val);
+    }
+
+    public Object getExtra(String key){
+        return this.extra.get(key);
+    }
+
 
     @Override
     public String toString() {
         return "JobCommand{" +
-                "command='" + command + '\'' +
-                ", nextServerIP='" + nextServerIP + '\'' +
-                ", nextServerPort=" + nextServerPort +
-                ", jobId='" + jobId + '\'' +
+                "command=" + command +
+                ", jobID=" + jobID +
+                ", groupID=" + groupID +
+                ", stepID=" + stepID +
+                ", serviceID=" + serviceID +
+                ", extra=" + extra +
                 '}';
     }
 }
