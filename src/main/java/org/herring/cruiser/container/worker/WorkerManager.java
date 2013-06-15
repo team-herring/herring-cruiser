@@ -14,9 +14,9 @@ public class WorkerManager {
 
     static {
         workerMap = new ConcurrentHashMap<String, Worker>();
-        workerMap.put("worker1", new Worker("localhost", 8855));
-        workerMap.put("worker2", new Worker("localhost", 8856));
-        workerMap.put("worker3", new Worker("localhost", 8857));
+        workerMap.put("localhost", new Worker("localhost", 8855));
+        workerMap.put("localhost2", new Worker("localhost2", 8856));
+        workerMap.put("localhost2", new Worker("localhost2", 8857));
     }
 
     public static void regist(String name, Worker cruiserSerivce){
@@ -28,6 +28,11 @@ public class WorkerManager {
     }
 
     public static Worker get(){
-        return workerMap.get("test");
+        return workerMap.get("worker1");
+    }
+
+    public static void remove(String ip) {
+        Worker worker = workerMap.get(ip);
+        worker.decrease();
     }
 }
