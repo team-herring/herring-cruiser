@@ -1,9 +1,7 @@
 package org.herring.cruiser.job;
 
 import org.herring.cruiser.container.sequence.JobSequence;
-import org.herring.cruiser.job.step.Step;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,23 +11,18 @@ import java.util.List;
  * @since 1.0
  */
 public class Job {
-    private List<Step> steps;
-    private int id = JobSequence.get();
+    private int jobID;
+    private List<Group> groups;
 
     public Job() {
-        steps = new ArrayList<Step>();
+        this.jobID = JobSequence.get();
     }
 
-    public void append(Step step){
-        steps.add(step);
+    public void append(Group group) {
+        this.groups.add(group);
     }
 
     public void start(){
-        for (Step step : steps)
-            step.start();
-    }
 
-    public int getId(){
-        return this.id;
     }
 }
