@@ -12,7 +12,7 @@ import org.herring.worker.container.WorkServiceManager;
  * @author Youngdeok Kim
  * @since 1.0
  */
-public abstract class Group implements WorkerService {
+public abstract class Collector implements WorkerService {
     @Override
     public void service(Request request, Response response, NextWorker nextWorker) {
         service(request, nextWorker);

@@ -1,6 +1,7 @@
 package org.herring.cruiser.job;
 
 import org.herring.cruiser.core.service.aggregate.Aggregation;
+import org.herring.cruiser.core.service.group.Collector;
 import org.herring.cruiser.core.service.work.Work;
 import java.util.List;
 
@@ -11,19 +12,19 @@ import java.util.List;
  * @since 1.0
  */
 public class Group {
-    private String field;
+    private String name;
     private String input;
     private String output;
     private List<Work> works;
-    private org.herring.cruiser.core.service.group.Group group;
+    private Collector collector;
     private Aggregation aggregation;
 
-    public Group(String field) {
-        this.field = field;
+    public Group(String name) {
+        this.name = name;
     }
 
-    public void group(org.herring.cruiser.core.service.group.Group group) {
-        this.group = group;
+    public void group(Collector collector) {
+        this.collector = collector;
     }
 
     public void input(String name) {
@@ -40,5 +41,11 @@ public class Group {
 
     public void aggregate(Aggregation aggregation){
         this.aggregation = aggregation;
+    }
+
+    public void start() {
+        for (Work work : works) {
+
+        }
     }
 }

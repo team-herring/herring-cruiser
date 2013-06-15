@@ -9,7 +9,7 @@ import org.herring.cruiser.core.request.Request;
  * @author Youngdeok Kim
  * @since 1.0
  */
-public class GroupBy extends Group {
+public class GroupBy extends Collector {
 
     @Override
     public void service(Request request, NextWorker nextWorker) {

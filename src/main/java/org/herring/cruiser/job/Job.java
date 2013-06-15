@@ -1,6 +1,7 @@
 package org.herring.cruiser.job;
 
 import org.herring.cruiser.container.sequence.JobSequence;
+import org.herring.cruiser.core.zookeeper.ZooKeeperManager;
 
 import java.util.List;
 
@@ -23,6 +24,12 @@ public class Job {
     }
 
     public void start(){
+        for (Group group : groups) {
+            ZooKeeperManager.registGroup(jobID, group);
+        }
 
+        for (Group group : groups) {
+            group.start();
+        }
     }
 }
