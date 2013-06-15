@@ -1,4 +1,4 @@
-package org.herring.worker.server.service;
+package org.herring.cruiser.core.service;
 
 import org.herring.cruiser.core.network.NextWorker;
 import org.herring.cruiser.core.request.Request;
