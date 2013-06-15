@@ -15,12 +15,12 @@ import java.io.IOException;
  * @author Youngdeok Kim
  * @since 1.0
  */
-public class HerringCruiserDispacher implements Runnable {
-    private static final Logger logger = Logger.getLogger(HerringCruiserDispacher.class);
+public class HerringCruiserDispatcher implements Runnable {
+    private static final Logger logger = Logger.getLogger(HerringCruiserDispatcher.class);
     private final Request request;
     private final Response response;
 
-    public HerringCruiserDispacher(Request request, Response response) {
+    public HerringCruiserDispatcher(Request request, Response response) {
         this.request = request;
         this.response = response;
     }
