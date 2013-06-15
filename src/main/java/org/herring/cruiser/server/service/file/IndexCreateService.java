@@ -1,14 +1,14 @@
 package org.herring.cruiser.server.service.file;
 
-import org.herring.cruiser.container.job.JobManager;
-import org.herring.cruiser.container.worker.Worker;
-import org.herring.cruiser.container.worker.WorkerManager;
-import org.herring.cruiser.core.event.EventHandler;
-import org.herring.cruiser.core.model.JobCommand;
 import org.herring.cruiser.core.request.Request;
 import org.herring.cruiser.core.response.Response;
+import org.herring.cruiser.core.service.group.GroupBy;
+import org.herring.cruiser.core.service.work.CreateIndex;
+import org.herring.cruiser.core.service.work.DataStore;
+import org.herring.cruiser.job.Group;
+import org.herring.cruiser.job.Job;
 import org.herring.cruiser.server.service.CruiserService;
-import org.herring.protocol.NetworkContext;
+import org.herring.worker.server.service.imple.ColumnAnalyzer;
 
 import java.io.IOException;
 
@@ -21,15 +21,24 @@ import java.io.IOException;
 public class IndexCreateService implements CruiserService {
     @Override
     public void service(Request request, Response response) throws IOException {
-        Worker worker = WorkerManager.find("worker1");
+        Job job = new Job();
 
-        JobCommand jobCommand = JobManager.createAndRegist("RegistJobWorker");
+        Group analyzer = new Group("analyzer");
+        analyzer.addWork(new ColumnAnalyzer());
+        analyzer.output("index");
 
-        worker.takeWork(jobCommand, new EventHandler() {
-            @Override
-            public void handler(NetworkContext context, Object o) {
-                Thread.currentThread().notify();
-            }
-        });
+        Group index = new Group("index");
+        index.input("analyzer");
+        index.addWork(new CreateIndex());
+        index.output("store");
+
+        Group store = new Group("store");
+        store.group(new GroupBy());
+        store.input("index");
+        store.addWork(new DataStore());
+
+        job.append(analyzer);
+        job.append(index);
+        job.append(store);
     }
 }
