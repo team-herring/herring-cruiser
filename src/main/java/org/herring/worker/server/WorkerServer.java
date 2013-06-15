@@ -1,5 +1,6 @@
 package org.herring.worker.server;
 
+import org.apache.log4j.Logger;
 import org.herring.cruiser.core.codec.HerringCruiserCodec;
 import org.herring.cruiser.core.request.Request;
 import org.herring.cruiser.core.response.Response;
@@ -16,6 +17,7 @@ import org.herring.worker.setting.WorkerSetting;
  * @since 1.0
  */
 public class WorkerServer {
+    private static final Logger log = Logger.getLogger(WorkerServer.class);
     private final static int port = WorkerSetting.PORT;
     private ServerComponent serverComponent;
 
