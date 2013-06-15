@@ -4,8 +4,8 @@ package org.herring.worker.server;
 import org.herring.cruiser.core.network.NextWorker;
 import org.herring.cruiser.core.request.Request;
 import org.herring.cruiser.core.response.Response;
-import org.herring.worker.container.WorkerContainer;
-import org.herring.worker.server.service.WorkerService;
+import org.herring.worker.container.WorkServiceManager;
+import org.herring.cruiser.core.service.WorkerService;
 
 /**
  * Description.
@@ -24,9 +24,10 @@ public class HerringWorkerDispacher implements Runnable {
 
     @Override
     public void run() {
+        WorkerService workerService = WorkServiceManager.findAndCreate(request);
         NextWorker nextWorker = HerringDataSenderFactory.create(request);
-        WorkerService workerService = WorkerContainer.findService(request);
         workerService.service(request, response, nextWorker);
+
         response.close();
     }
 }
