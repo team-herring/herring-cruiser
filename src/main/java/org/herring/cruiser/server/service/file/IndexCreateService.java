@@ -28,6 +28,7 @@ public class IndexCreateService implements CruiserService {
         analyzer.output("index");
 
         Group index = new Group("index");
+        index.group(new GroupBy());
         index.input("analyzer");
         index.addWork(new CreateIndex());
         index.output("store");
@@ -40,5 +41,7 @@ public class IndexCreateService implements CruiserService {
         job.append(analyzer);
         job.append(index);
         job.append(store);
+
+        job.start();
     }
 }
