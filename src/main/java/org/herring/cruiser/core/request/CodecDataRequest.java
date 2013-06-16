@@ -28,16 +28,6 @@ public class CodecDataRequest implements Request<ByteBuffer>{
     }
 
     @Override
-    public int getJobID() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
-    public int getStepID() {
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
     public ByteBuffer getData() {
         return null;
     }
