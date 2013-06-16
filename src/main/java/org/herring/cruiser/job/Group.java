@@ -21,7 +21,7 @@ import java.util.List;
  * @author Youngdeok Kim
  * @since 1.0
  */
-public class Group implements Serializable{
+public class Group implements Serializable {
     private String name;
     private String input;
     private String output;
@@ -59,20 +59,24 @@ public class Group implements Serializable{
             ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/collector/" + collector.getClass().getName());
             ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/collector/" + collector.getClass().getName());
         }
-        if (aggregation != null) {
-            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
-            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
-        }
         for (Work work : works) {
             ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/work/" + work.getClass().getName());
             ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/work/" + work.getClass().getName());
         }
+        if (aggregation != null) {
+            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
+            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
+        }
+
+        if (collector != null){
+            sendServer(jobID, name, input);
+        }
     }
 
-    public void sendServer(int jobID, int groupID, String serviceName) {
+    public void sendServer(int jobID, String groupName, String serviceName) {
         Worker worker = WorkerManager.get();
         MessageSender sender = new MessageSender(worker.getIp(), worker.getPort());
-        JobCommand jobCommand = new JobCommand(jobID, groupID, serviceName);
+        JobCommand jobCommand = new JobCommand(jobID, groupName, serviceName);
         try {
             sender.sendJobCommand(jobCommand, new EventHandler() {
                 @Override

@@ -13,7 +13,7 @@ public class JobCommand implements Serializable{
     private static final long serialVersionUID = -295417751909939119L;
     private int command;
     private int jobID;
-    private int groupID;
+    private String groupName;
     private String serviceName;
     private String field;
 
@@ -28,9 +28,9 @@ public class JobCommand implements Serializable{
     public JobCommand() {
     }
 
-    public JobCommand(int jobID, int groupID, String serviceName) {
+    public JobCommand(int jobID, String groupName, String serviceName) {
         this.jobID = jobID;
-        this.groupID = groupID;
+        this.groupName = groupName;
         this.serviceName = serviceName;
     }
 
@@ -42,8 +42,8 @@ public class JobCommand implements Serializable{
         return jobID;
     }
 
-    public int getGroupID() {
-        return groupID;
+    public String getGroupName() {
+        return groupName;
     }
 
     public String getServiceName() {
