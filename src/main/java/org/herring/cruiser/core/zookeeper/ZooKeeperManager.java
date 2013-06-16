@@ -3,8 +3,10 @@ package org.herring.cruiser.core.zookeeper;
 import org.herring.core.cluster.zookeeper.ZookeeperClient;
 import org.herring.cruiser.job.Group;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Description.
@@ -22,19 +24,19 @@ public class ZooKeeperManager {
     static {
         eventMap = new HashMap<String, List<JobEvent>>();
 
-        Properties properties = new Properties();
-        try {
-            properties.load(ClassLoader.getSystemResourceAsStream("zookeeper.properties"));
-            String uri = properties.getProperty("zookeeper.server-uri");
-            int timeout = Integer.valueOf(properties.getProperty("zookeeper.timeout"));
-
-            ArrayList<Boolean> watchCheck = new ArrayList<Boolean>();
-            for (int i = 0; i < 3; ++i)
-                watchCheck.add(false);
-            zkClient = new ZookeeperClient(uri, timeout, ClassLoader.getSystemResource("jass.conf").toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        Properties properties = new Properties();
+//        try {
+//            properties.load(ClassLoader.getSystemResourceAsStream("zookeeper.properties"));
+//            String uri = properties.getProperty("zookeeper.server-uri");
+//            int timeout = Integer.valueOf(properties.getProperty("zookeeper.timeout"));
+//
+//            ArrayList<Boolean> watchCheck = new ArrayList<Boolean>();
+//            for (int i = 0; i < 3; ++i)
+//                watchCheck.add(false);
+//            zkClient = new ZookeeperClient(uri, timeout, ClassLoader.getSystemResource("jass.conf").toString());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public static void registJob(int jobID) {

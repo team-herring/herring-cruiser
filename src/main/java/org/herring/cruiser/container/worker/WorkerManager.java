@@ -28,7 +28,7 @@ public class WorkerManager {
     }
 
     public static Worker get(){
-        Worker worker = workerMap.get("worker1");
+        Worker worker = workerMap.get("localhost");
         worker.increase();
         return worker;
     }
