@@ -12,6 +12,7 @@ import org.herring.cruiser.core.zookeeper.ZooKeeperManager;
 import org.herring.protocol.NetworkContext;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ import java.util.List;
  * @author Youngdeok Kim
  * @since 1.0
  */
-public class Group {
+public class Group implements Serializable{
     private String name;
     private String input;
     private String output;
