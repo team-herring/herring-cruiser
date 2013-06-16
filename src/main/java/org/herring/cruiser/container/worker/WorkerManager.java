@@ -28,7 +28,9 @@ public class WorkerManager {
     }
 
     public static Worker get(){
-        return workerMap.get("worker1");
+        Worker worker = workerMap.get("worker1");
+        worker.increase();
+        return worker;
     }
 
     public static void remove(String ip) {

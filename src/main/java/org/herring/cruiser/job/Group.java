@@ -5,6 +5,7 @@ import org.herring.cruiser.container.worker.WorkerManager;
 import org.herring.cruiser.core.event.EventHandler;
 import org.herring.cruiser.core.model.JobCommand;
 import org.herring.cruiser.core.network.MessageSender;
+import org.herring.cruiser.core.service.WorkerService;
 import org.herring.cruiser.core.service.aggregate.Aggregation;
 import org.herring.cruiser.core.service.group.Collector;
 import org.herring.cruiser.core.service.work.Work;
@@ -13,6 +14,7 @@ import org.herring.protocol.NetworkContext;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,6 +49,8 @@ public class Group implements Serializable {
     }
 
     public void addWork(Work work) {
+        if (works == null)
+            this.works = new ArrayList<Work>();
         this.works.add(work);
     }
 
@@ -59,24 +63,38 @@ public class Group implements Serializable {
             ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/collector/" + collector.getClass().getName());
             ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/collector/" + collector.getClass().getName());
         }
-        for (Work work : works) {
-            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/work/" + work.getClass().getName());
-            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/work/" + work.getClass().getName());
+        if (works != null) {
+            for (Work work : works) {
+                ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/work/" + work.getClass().getName());
+                ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/work/" + work.getClass().getName());
+            }
         }
         if (aggregation != null) {
             ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
             ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
         }
 
-        if (collector != null){
-            sendServer(jobID, name, input);
+        if (collector != null) {
+            sendServer(jobID, name, collector);
+            return;
+        }
+
+        if (works != null) {
+            for (Work work : works) {
+                sendServer(jobID, name, work);
+            }
+            return;
+        }
+
+        if (aggregation != null) {
+            sendServer(jobID, name, aggregation);
         }
     }
 
-    public void sendServer(int jobID, String groupName, String serviceName) {
+    public void sendServer(int jobID, String groupName, WorkerService service) {
         Worker worker = WorkerManager.get();
         MessageSender sender = new MessageSender(worker.getIp(), worker.getPort());
-        JobCommand jobCommand = new JobCommand(jobID, groupName, serviceName);
+        JobCommand jobCommand = new JobCommand(jobID, groupName, service.getClass().getName());
         try {
             sender.sendJobCommand(jobCommand, new EventHandler() {
                 @Override
