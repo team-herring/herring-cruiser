@@ -23,13 +23,18 @@ public class CodecDataRequest implements Request<ByteBuffer>{
     }
 
     @Override
-    public String getCommand() {
-        return "";
+    public int getCommand() {
+        return 0;
     }
 
     @Override
-    public String getJobID() {
-        return null;
+    public int getJobID() {
+        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public int getStepID() {
+        return 0;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

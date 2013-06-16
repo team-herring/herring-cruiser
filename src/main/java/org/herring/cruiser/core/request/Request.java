@@ -8,7 +8,8 @@ package org.herring.cruiser.core.request;
  */
 public interface Request<T> {
     public int getSize();
-    public String getCommand();
-    public String getJobID();
+    public int getCommand();
+    public int getJobID();
+    public int getStepID();
     public T getData();
 }
