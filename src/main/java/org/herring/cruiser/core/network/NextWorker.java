@@ -29,8 +29,7 @@ public class NextWorker {
     }
 
     public NextWorker(JobCommand jobCommand) {
-        this.ip = jobCommand.getNextServerIP();
-        this.port = jobCommand.getNextServerPort();
+
     }
 
     public void send(ByteBuffer buffer, final EventHandler eventHandler) {
