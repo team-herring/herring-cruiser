@@ -31,6 +31,10 @@ public class Job {
         }
 
         for (Group group : groups) {
+            group.deploy(jobID);
+        }
+
+        for (Group group : groups) {
             group.start(jobID);
         }
     }

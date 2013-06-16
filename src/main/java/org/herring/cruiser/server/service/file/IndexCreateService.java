@@ -3,7 +3,7 @@ package org.herring.cruiser.server.service.file;
 import org.herring.cruiser.core.request.Request;
 import org.herring.cruiser.core.response.Response;
 import org.herring.cruiser.core.service.group.GroupBy;
-import org.herring.cruiser.core.service.listener.AgentListener;
+import org.herring.cruiser.core.service.work.AgentListener;
 import org.herring.cruiser.core.service.work.CreateIndex;
 import org.herring.cruiser.core.service.work.DataStore;
 import org.herring.cruiser.job.Group;
