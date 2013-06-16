@@ -2,11 +2,15 @@ package org.herring.cruiser.core.network;
 
 import org.herring.cruiser.core.codec.HerringCruiserCodec;
 import org.herring.cruiser.core.event.EventHandler;
+import org.herring.cruiser.core.model.JobCommand;
 import org.herring.protocol.ClientComponent;
 import org.herring.protocol.NetworkContext;
 import org.herring.protocol.codec.HerringCodec;
 import org.herring.protocol.handler.MessageHandler;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.ByteBuffer;
 
 /**
@@ -26,8 +30,18 @@ public class MessageSender {
         this.port = port;
     }
 
+    public void sendJobCommand(JobCommand jobCommand, EventHandler eventHandler) throws IOException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+        objectOutputStream.writeObject(jobCommand);
+
+        ByteBuffer buffer = ByteBuffer.wrap(outputStream.toByteArray());
+        MessageSender sender = new MessageSender(ip, port);
+        send(buffer, eventHandler);
+    }
+
     public void send(ByteBuffer buffer, final EventHandler eventHandler) {
-        ByteBuffer messageBuffer = ByteBuffer.allocate(buffer.capacity()+1);
+        ByteBuffer messageBuffer = ByteBuffer.allocate(buffer.capacity() + 1);
         messageBuffer.position(1);
         messageBuffer.put(buffer);
         messageBuffer.put(0, message);
