@@ -17,8 +17,12 @@ public class JobCommand implements Serializable{
     private String serviceName;
     private String field;
 
-    private int nextGroupID;
-    private int nextServiceID;
+    private String inputGroupID;
+    private String intputServiceName;
+
+    private String outputGroupID;
+    private String outputServiceName;
+
     private Map<String, Object> extra;
 
     public JobCommand() {
@@ -46,20 +50,36 @@ public class JobCommand implements Serializable{
         return serviceName;
     }
 
-    public int getNextGroupID() {
-        return nextGroupID;
+    public String getInputGroupID() {
+        return inputGroupID;
     }
 
-    public void setNextGroupID(int nextGroupID) {
-        this.nextGroupID = nextGroupID;
+    public void setInputGroupID(String inputGroupID) {
+        this.inputGroupID = inputGroupID;
     }
 
-    public int getNextServiceID() {
-        return nextServiceID;
+    public String getIntputServiceName() {
+        return intputServiceName;
     }
 
-    public void setNextServiceID(int nextServiceID) {
-        this.nextServiceID = nextServiceID;
+    public void setIntputServiceName(String intputServiceName) {
+        this.intputServiceName = intputServiceName;
+    }
+
+    public String getOutputGroupID() {
+        return outputGroupID;
+    }
+
+    public void setOutputGroupID(String outputGroupID) {
+        this.outputGroupID = outputGroupID;
+    }
+
+    public String getOutputServiceName() {
+        return outputServiceName;
+    }
+
+    public void setOutputServiceName(String outputServiceName) {
+        this.outputServiceName = outputServiceName;
     }
 
     public void putExtra(String key, Object val){
