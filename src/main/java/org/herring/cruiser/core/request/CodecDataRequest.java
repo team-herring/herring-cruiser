@@ -9,26 +9,26 @@ import java.nio.ByteBuffer;
  * @since 1.0
  */
 public class CodecDataRequest implements Request<ByteBuffer>{
-    private ByteBuffer byteBuffer;
+    private byte[] byteBuffer;
     private String uuid;
 
 
-    public CodecDataRequest(ByteBuffer byteBuffer) {
+    public CodecDataRequest(byte[] byteBuffer) {
         this.byteBuffer = byteBuffer;
     }
 
     @Override
     public int getSize() {
-        return 0;
+        return byteBuffer.length;
     }
 
     @Override
     public int getCommand() {
-        return 0;
+        return 2;
     }
 
     @Override
     public ByteBuffer getData() {
-        return null;
+        return ByteBuffer.wrap(byteBuffer);
     }
 }

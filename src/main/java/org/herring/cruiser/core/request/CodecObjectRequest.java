@@ -30,7 +30,7 @@ public class CodecObjectRequest implements Request<JobCommand> {
 
     @Override
     public int getCommand() {
-        return jobCommand.getCommand();
+        return 1;
     }
 
     public int getJobID() {

@@ -21,7 +21,7 @@ public class HerringRequestSelector {
             request = new CodecObjectRequest(datas);
         }
         if (command == (byte) 2) {
-            request = new CodecObjectRequest(datas);
+            request = new CodecDataRequest(datas);
         }
 
         return request;

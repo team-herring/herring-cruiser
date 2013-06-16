@@ -24,9 +24,12 @@ public class HerringWorkerDispacher implements Runnable {
 
     @Override
     public void run() {
-        WorkerService workerService = WorkServiceManager.findAndCreate(request);
-        NextWorker nextWorker = HerringDataSenderFactory.create(request);
-        workerService.service(request, response, nextWorker);
+        if (request.getCommand() == 1) {
+            WorkerService workerService = WorkServiceManager.findAndCreate(request);
+            NextWorker nextWorker = HerringDataSenderFactory.create(request);
+            workerService.service(request, response, nextWorker);
+        }
+
 
         response.close();
     }

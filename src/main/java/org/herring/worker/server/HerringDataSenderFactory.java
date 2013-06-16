@@ -12,7 +12,6 @@ import org.herring.cruiser.core.request.Request;
  */
 public class HerringDataSenderFactory {
     public static NextWorker create(Request request){
-        JobCommand jobCommand = new JobCommand();
         return new NextWorker((JobCommand) request.getData());
     }
 }
