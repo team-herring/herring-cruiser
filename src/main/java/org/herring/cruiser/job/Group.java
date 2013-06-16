@@ -58,7 +58,7 @@ public class Group implements Serializable {
         this.aggregation = aggregation;
     }
 
-    public void start(int jobID) {
+    public void deploy(int jobID) {
         if (collector != null) {
             ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/collector/" + collector.getClass().getName());
             ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/collector/" + collector.getClass().getName());
@@ -73,7 +73,9 @@ public class Group implements Serializable {
             ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
             ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
         }
+    }
 
+    public void start(int jobID) {
         if (collector != null) {
             sendServer(jobID, name, collector);
             return;
@@ -95,6 +97,10 @@ public class Group implements Serializable {
         Worker worker = WorkerManager.get();
         MessageSender sender = new MessageSender(worker.getIp(), worker.getPort());
         JobCommand jobCommand = new JobCommand(jobID, groupName, service.getClass().getName());
+
+        jobCommand.setInputGroupID(input);
+        jobCommand.setOutputGroupID(output);
+
         try {
             sender.sendJobCommand(jobCommand, new EventHandler() {
                 @Override
