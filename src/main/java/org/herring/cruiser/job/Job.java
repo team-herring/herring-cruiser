@@ -26,10 +26,12 @@ public class Job {
     public void start(){
         for (Group group : groups) {
             ZooKeeperManager.registGroup(jobID, group);
+            ZooKeeperManager.createFolder(jobID+ZooKeeperManager.TOPOLOGY_DIRECTORY);
+            ZooKeeperManager.createFolder(jobID+ZooKeeperManager.EVENT_DIRECTORY);
         }
 
         for (Group group : groups) {
-            group.start();
+            group.start(jobID);
         }
     }
 }

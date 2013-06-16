@@ -3,6 +3,8 @@ package org.herring.cruiser.job;
 import org.herring.cruiser.core.service.aggregate.Aggregation;
 import org.herring.cruiser.core.service.group.Collector;
 import org.herring.cruiser.core.service.work.Work;
+import org.herring.cruiser.core.zookeeper.ZooKeeperManager;
+
 import java.util.List;
 
 /**
@@ -39,13 +41,22 @@ public class Group {
         this.works.add(work);
     }
 
-    public void aggregate(Aggregation aggregation){
+    public void aggregation(Aggregation aggregation) {
         this.aggregation = aggregation;
     }
 
-    public void start() {
+    public void start(int jobID) {
+        if (collector != null) {
+            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/collector/" + collector.getClass().getName());
+            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/collector/" + collector.getClass().getName());
+        }
+        if (aggregation != null) {
+            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
+            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
+        }
         for (Work work : works) {
-
+            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/work/" + work.getClass().getName());
+            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/work/" + work.getClass().getName());
         }
     }
 }
