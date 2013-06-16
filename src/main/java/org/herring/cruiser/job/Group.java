@@ -1,10 +1,17 @@
 package org.herring.cruiser.job;
 
+import org.herring.cruiser.container.worker.Worker;
+import org.herring.cruiser.container.worker.WorkerManager;
+import org.herring.cruiser.core.event.EventHandler;
+import org.herring.cruiser.core.model.JobCommand;
+import org.herring.cruiser.core.network.MessageSender;
 import org.herring.cruiser.core.service.aggregate.Aggregation;
 import org.herring.cruiser.core.service.group.Collector;
 import org.herring.cruiser.core.service.work.Work;
 import org.herring.cruiser.core.zookeeper.ZooKeeperManager;
+import org.herring.protocol.NetworkContext;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -57,6 +64,21 @@ public class Group {
         for (Work work : works) {
             ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/work/" + work.getClass().getName());
             ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/work/" + work.getClass().getName());
+        }
+    }
+
+    public void sendServer(int jobID, int groupID, String serviceName) {
+        Worker worker = WorkerManager.get();
+        MessageSender sender = new MessageSender(worker.getIp(), worker.getPort());
+        JobCommand jobCommand = new JobCommand(jobID, groupID, serviceName);
+        try {
+            sender.sendJobCommand(jobCommand, new EventHandler() {
+                @Override
+                public void handler(NetworkContext context, Object o) {
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
