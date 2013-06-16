@@ -14,7 +14,6 @@ import java.io.ObjectInputStream;
 public class CodecObjectRequest implements Request<JobCommand> {
     private JobCommand jobCommand;
     private int jobID;
-    private int stepID;
     private int serviceID;
 
     public CodecObjectRequest(byte[] datas) throws IOException, ClassNotFoundException {
