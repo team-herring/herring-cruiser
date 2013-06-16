@@ -14,22 +14,20 @@ public class JobCommand implements Serializable{
     private int command;
     private int jobID;
     private int groupID;
-    private int stepID;
-    private int serviceID;
+    private String serviceName;
+    private String field;
 
     private int nextGroupID;
-    private int nextStepID;
     private int nextServiceID;
     private Map<String, Object> extra;
 
     public JobCommand() {
     }
 
-    public JobCommand(int jobID, int groupID, int stepID, int serviceID) {
+    public JobCommand(int jobID, int groupID, String serviceName) {
         this.jobID = jobID;
         this.groupID = groupID;
-        this.stepID = stepID;
-        this.serviceID = serviceID;
+        this.serviceName = serviceName;
     }
 
     public int getCommand() {
@@ -44,12 +42,8 @@ public class JobCommand implements Serializable{
         return groupID;
     }
 
-    public int getStepID() {
-        return stepID;
-    }
-
-    public int getServiceID() {
-        return serviceID;
+    public String getServiceName() {
+        return serviceName;
     }
 
     public int getNextGroupID() {
@@ -58,14 +52,6 @@ public class JobCommand implements Serializable{
 
     public void setNextGroupID(int nextGroupID) {
         this.nextGroupID = nextGroupID;
-    }
-
-    public int getNextStepID() {
-        return nextStepID;
-    }
-
-    public void setNextStepID(int nextStepID) {
-        this.nextStepID = nextStepID;
     }
 
     public int getNextServiceID() {
@@ -82,18 +68,5 @@ public class JobCommand implements Serializable{
 
     public Object getExtra(String key){
         return this.extra.get(key);
-    }
-
-
-    @Override
-    public String toString() {
-        return "JobCommand{" +
-                "command=" + command +
-                ", jobID=" + jobID +
-                ", groupID=" + groupID +
-                ", stepID=" + stepID +
-                ", serviceID=" + serviceID +
-                ", extra=" + extra +
-                '}';
     }
 }
