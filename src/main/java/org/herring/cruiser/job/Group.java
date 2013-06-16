@@ -24,6 +24,7 @@ public class Group {
     private String name;
     private String input;
     private String output;
+    private String field;
     private List<Work> works;
     private Collector collector;
     private Aggregation aggregation;
@@ -80,5 +81,13 @@ public class Group {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getField() {
+        return field;
+    }
+
+    public void setField(String field) {
+        this.field = field;
     }
 }
