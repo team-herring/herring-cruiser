@@ -14,7 +14,9 @@ import java.util.Map;
  * @since 1.0
  */
 public class ZooKeeperManager {
-    private static final String BASE_PATH="cruiser/jobs";
+    public static final String TOPOLOGY_DIRECTORY = "/topology";
+    public static final String EVENT_DIRECTORY = "/event";
+    private static final String BASE_PATH="cruiser/jobs/";
     private static Map<String, List<JobEvent>> eventMap;
     static {
         eventMap = new HashMap<String, List<JobEvent>>();
