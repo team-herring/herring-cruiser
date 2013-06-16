@@ -3,6 +3,7 @@ package org.herring.cruiser.job;
 import org.herring.cruiser.container.sequence.JobSequence;
 import org.herring.cruiser.core.zookeeper.ZooKeeperManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class Job {
 
     public Job() {
         this.jobID = JobSequence.get();
+        this.groups = new ArrayList<Group>();
     }
 
     public void append(Group group) {
