@@ -3,6 +3,7 @@ package org.herring.cruiser.server.service.file;
 import org.herring.cruiser.core.request.Request;
 import org.herring.cruiser.core.response.Response;
 import org.herring.cruiser.core.service.group.GroupBy;
+import org.herring.cruiser.core.service.listener.AgentListener;
 import org.herring.cruiser.core.service.work.CreateIndex;
 import org.herring.cruiser.core.service.work.DataStore;
 import org.herring.cruiser.job.Group;
@@ -23,7 +24,12 @@ public class IndexCreateService implements CruiserService {
     public void service(Request request, Response response) throws IOException {
         Job job = new Job();
 
+        Group agent = new Group("agent");
+        agent.addWork(new AgentListener());
+        agent.output("analyzer");
+
         Group analyzer = new Group("analyzer");
+        analyzer.group(new GroupBy());
         analyzer.addWork(new ColumnAnalyzer());
         analyzer.output("index");
 
@@ -38,6 +44,7 @@ public class IndexCreateService implements CruiserService {
         store.input("index");
         store.addWork(new DataStore());
 
+        job.append(agent);
         job.append(analyzer);
         job.append(index);
         job.append(store);

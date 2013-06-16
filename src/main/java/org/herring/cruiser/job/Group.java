@@ -76,20 +76,10 @@ public class Group implements Serializable {
     }
 
     public void start(int jobID) {
-        if (collector != null) {
-            sendServer(jobID, name, collector);
-            return;
-        }
-
-        if (works != null) {
+        if (input == null && works != null) {
             for (Work work : works) {
                 sendServer(jobID, name, work);
             }
-            return;
-        }
-
-        if (aggregation != null) {
-            sendServer(jobID, name, aggregation);
         }
     }
 
@@ -119,4 +109,6 @@ public class Group implements Serializable {
     public void setField(String field) {
         this.field = field;
     }
+
+
 }
