@@ -89,4 +89,28 @@ public class JobCommand implements Serializable{
     public Object getExtra(String key){
         return this.extra.get(key);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        JobCommand that = (JobCommand) o;
+
+        if (jobID != that.jobID) return false;
+        if (field != null ? !field.equals(that.field) : that.field != null) return false;
+        if (groupName != null ? !groupName.equals(that.groupName) : that.groupName != null) return false;
+        if (serviceName != null ? !serviceName.equals(that.serviceName) : that.serviceName != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = jobID;
+        result = 31 * result + (groupName != null ? groupName.hashCode() : 0);
+        result = 31 * result + (serviceName != null ? serviceName.hashCode() : 0);
+        result = 31 * result + (field != null ? field.hashCode() : 0);
+        return result;
+    }
 }
