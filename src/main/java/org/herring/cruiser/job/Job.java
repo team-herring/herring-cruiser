@@ -40,6 +40,7 @@ public class Job {
                 group.start(jobID);
             }
         } catch (KeeperException e) {
+            e.printStackTrace();
             deleteJobDirectory();
         }
     }

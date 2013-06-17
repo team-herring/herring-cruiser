@@ -60,16 +60,17 @@ public class Group implements Serializable {
     }
 
     public void deploy(int jobID) throws KeeperException {
+        ZooKeeperManager.createGroupDirectory(jobID, name);
         if (collector != null) {
-            ZooKeeperManager.createCollector(jobID, collector.getClass().getName());
+            ZooKeeperManager.createCollector(jobID, name, collector.getClass().getSimpleName());
         }
         if (works != null) {
             for (Work work : works) {
-                ZooKeeperManager.createWork(jobID, work.getClass().getName());
-            }
+                ZooKeeperManager.createWork(jobID, name, work.getClass().getSimpleName());
+                        }
         }
         if (aggregation != null) {
-            ZooKeeperManager.createAggregation(jobID, aggregation.getClass().getName());
+            ZooKeeperManager.createAggregation(jobID, name, aggregation.getClass().getSimpleName());
         }
     }
 
