@@ -1,6 +1,5 @@
 package org.herring.cruiser.server.service.file;
 
-import org.apache.zookeeper.KeeperException;
 import org.herring.cruiser.core.request.Request;
 import org.herring.cruiser.core.response.Response;
 import org.herring.cruiser.core.service.group.GroupBy;
@@ -50,10 +49,6 @@ public class IndexCreateService implements CruiserService {
         job.append(index);
         job.append(store);
 
-        try {
-            job.start();
-        } catch (KeeperException e) {
-            e.printStackTrace();
-        }
+        job.start();
     }
 }
