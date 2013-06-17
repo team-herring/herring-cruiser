@@ -1,5 +1,6 @@
 package org.herring.cruiser.job;
 
+import org.apache.zookeeper.KeeperException;
 import org.herring.cruiser.container.sequence.JobSequence;
 import org.herring.cruiser.core.zookeeper.ZooKeeperManager;
 
@@ -25,12 +26,10 @@ public class Job {
         this.groups.add(group);
     }
 
-    public void start(){
-        for (Group group : groups) {
-            ZooKeeperManager.registGroup(jobID, group);
-            ZooKeeperManager.createFolder(jobID+ZooKeeperManager.TOPOLOGY_DIRECTORY);
-            ZooKeeperManager.createFolder(jobID+ZooKeeperManager.EVENT_DIRECTORY);
-        }
+    public void start() throws KeeperException {
+        ZooKeeperManager.createJob(jobID);
+        ZooKeeperManager.createTopologyDirectory(jobID);
+        ZooKeeperManager.createEventDirectory(jobID);
 
         for (Group group : groups) {
             group.deploy(jobID);

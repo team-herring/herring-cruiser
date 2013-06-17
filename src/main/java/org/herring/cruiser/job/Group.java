@@ -1,5 +1,6 @@
 package org.herring.cruiser.job;
 
+import org.apache.zookeeper.KeeperException;
 import org.herring.cruiser.container.worker.Worker;
 import org.herring.cruiser.container.worker.WorkerManager;
 import org.herring.cruiser.core.event.EventHandler;
@@ -58,20 +59,20 @@ public class Group implements Serializable {
         this.aggregation = aggregation;
     }
 
-    public void deploy(int jobID) {
+    public void deploy(int jobID) throws KeeperException {
         if (collector != null) {
-            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/collector/" + collector.getClass().getName());
-            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/collector/" + collector.getClass().getName());
+            ZooKeeperManager.createDirectory(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/collector/" + collector.getClass().getName());
+            ZooKeeperManager.createDirectory(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/collector/" + collector.getClass().getName());
         }
         if (works != null) {
             for (Work work : works) {
-                ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/work/" + work.getClass().getName());
-                ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/work/" + work.getClass().getName());
+                ZooKeeperManager.createDirectory(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/work/" + work.getClass().getName());
+                ZooKeeperManager.createDirectory(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/work/" + work.getClass().getName());
             }
         }
         if (aggregation != null) {
-            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
-            ZooKeeperManager.createFolder(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
+            ZooKeeperManager.createDirectory(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
+            ZooKeeperManager.createDirectory(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
         }
     }
 
