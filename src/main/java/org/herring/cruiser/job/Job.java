@@ -26,17 +26,29 @@ public class Job {
         this.groups.add(group);
     }
 
-    public void start() throws KeeperException {
-        ZooKeeperManager.createJob(jobID);
-        ZooKeeperManager.createTopologyDirectory(jobID);
-        ZooKeeperManager.createEventDirectory(jobID);
+    public void start() {
+        try {
+            ZooKeeperManager.createJob(jobID);
+            ZooKeeperManager.createTopologyDirectory(jobID);
+            ZooKeeperManager.createEventDirectory(jobID);
 
-        for (Group group : groups) {
-            group.deploy(jobID);
+            for (Group group : groups) {
+                group.deploy(jobID);
+            }
+
+            for (Group group : groups) {
+                group.start(jobID);
+            }
+        } catch (KeeperException e) {
+            deleteJobDirectory();
         }
+    }
 
-        for (Group group : groups) {
-            group.start(jobID);
+    private void deleteJobDirectory() {
+        try {
+            ZooKeeperManager.deleteDirectory(jobID);
+        } catch (KeeperException e1) {
+            e1.printStackTrace();
         }
     }
 }
