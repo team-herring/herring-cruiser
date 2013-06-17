@@ -37,8 +37,8 @@ public class ZooKeeperManager {
         }
     }
 
-    public static void createFile(String path) throws KeeperException {
-        zkClient.createDirectory(BASE_PATH+path);
+    public static void createFile(String path, String data, boolean isPersitent) throws KeeperException {
+            zkClient.createFile(BASE_PATH+path, data, isPersitent);
     }
 
     public static void createDirectory(String path) throws KeeperException {

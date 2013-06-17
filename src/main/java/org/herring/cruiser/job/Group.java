@@ -61,18 +61,15 @@ public class Group implements Serializable {
 
     public void deploy(int jobID) throws KeeperException {
         if (collector != null) {
-            ZooKeeperManager.createDirectory(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/collector/" + collector.getClass().getName());
-            ZooKeeperManager.createDirectory(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/collector/" + collector.getClass().getName());
+            ZooKeeperManager.createCollector(jobID, collector.getClass().getName());
         }
         if (works != null) {
             for (Work work : works) {
-                ZooKeeperManager.createDirectory(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/work/" + work.getClass().getName());
-                ZooKeeperManager.createDirectory(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/work/" + work.getClass().getName());
+                ZooKeeperManager.createWork(jobID, work.getClass().getName());
             }
         }
         if (aggregation != null) {
-            ZooKeeperManager.createDirectory(jobID + ZooKeeperManager.TOPOLOGY_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
-            ZooKeeperManager.createDirectory(jobID + ZooKeeperManager.EVENT_DIRECTORY + "/aggregation/" + aggregation.getClass().getName());
+            ZooKeeperManager.createAggregation(jobID, aggregation.getClass().getName());
         }
     }
 
