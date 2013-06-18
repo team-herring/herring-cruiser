@@ -7,7 +7,8 @@ package org.herring.cruiser.core.request;
  * @since 1.0
  */
 public interface Request<T> {
-    public int getSize();
-    public int getCommand();
-    public T getData();
+    int getSize();
+    int getCommand();
+    T getData();
+    String id();
 }

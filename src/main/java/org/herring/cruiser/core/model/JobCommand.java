@@ -90,6 +90,14 @@ public class JobCommand implements Serializable{
         return this.extra.get(key);
     }
 
+    public String getField() {
+        return field;
+    }
+
+    public void setField(String field) {
+        this.field = field;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

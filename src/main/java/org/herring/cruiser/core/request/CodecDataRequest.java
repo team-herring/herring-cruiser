@@ -31,4 +31,9 @@ public class CodecDataRequest implements Request<ByteBuffer>{
     public ByteBuffer getData() {
         return ByteBuffer.wrap(byteBuffer);
     }
+
+    @Override
+    public String id() {
+        return null;
+    }
 }

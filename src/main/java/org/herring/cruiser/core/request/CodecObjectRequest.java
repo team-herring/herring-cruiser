@@ -41,4 +41,12 @@ public class CodecObjectRequest implements Request<JobCommand> {
     public JobCommand getData() {
         return this.jobCommand;
     }
+
+    @Override
+    public String id() {
+        if (jobCommand.getField() == null)
+            return jobCommand.getJobID()+jobCommand.getGroupName()+jobCommand.getServiceName();
+
+        return jobCommand.getJobID()+jobCommand.getGroupName()+jobCommand.getServiceName()+jobCommand.getField();
+    }
 }
