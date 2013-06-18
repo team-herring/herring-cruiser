@@ -27,46 +27,6 @@ public class Worker {
         return port;
     }
 
-
-//    public void takeWork(JobCommand jobCommand, EventHandler eventHandler) throws IOException {
-//        jobCommand.setNextServerIP(ip);
-//        jobCommand.setNextServerPort(port);
-//
-//
-//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//        ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-//        objectOutputStream.writeObject(jobCommand);
-//
-//        ByteBuffer buffer = ByteBuffer.wrap(outputStream.toByteArray());
-//        MessageSender sender = new MessageSender(ip, port);
-//        sender.send(buffer, eventHandler);
-//    }
-//
-//    public void nextWorker(Worker worker) {
-//        this.ip = worker.getIp();
-//        this.port = worker.getPort();
-//    }
-//
-//    public JobCommand createJob(Integer serviceCommand) throws IOException {
-//        JobCommand jobCommand = JobCommandManager.createAndRegist(serviceCommand);
-//        takeWork(jobCommand, new EventHandler() {
-//            @Override
-//            public void handler(NetworkContext context, Object o) {
-//            }
-//        });
-//        return jobCommand;
-//    }
-//
-//    public void destroyJob(final int jobId) throws IOException {
-//        JobCommand jobCommand = JobCommandManager.find(jobId);
-//        jobCommand.setCommand(Commands.WORKER_DESTROY.getValue());
-//        takeWork(jobCommand, new EventHandler() {
-//            @Override
-//            public void handler(NetworkContext context, Object o) {
-//                JobCommandManager.remove(jobId);
-//            }
-//        });
-//    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
