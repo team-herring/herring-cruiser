@@ -122,6 +122,12 @@ public class ZooKeeperManager {
         zkClient.createDirectory(event + "/" + aggregationName);
     }
 
+    public static void createInformationFile(int jobID, String groupName, String fileName, String data) throws KeeperException {
+        String topology = BASE_PATH + jobID + TOPOLOGY_DIRECTORY + "/" + groupName + "/" + fileName;
+
+        zkClient.createFile(topology, data, true);
+    }
+
     public static void addListener(String path, JobEvent event) {
         if (!eventMap.containsKey(path))
             eventMap.put(path, new ArrayList<JobEvent>());

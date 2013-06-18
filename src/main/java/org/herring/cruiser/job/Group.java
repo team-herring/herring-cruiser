@@ -61,17 +61,35 @@ public class Group implements Serializable {
 
     public void deploy(int jobID) throws KeeperException {
         ZooKeeperManager.createGroupDirectory(jobID, name);
-        if (collector != null) {
+        if (collector != null)
             ZooKeeperManager.createCollector(jobID, name, collector.getClass().getSimpleName());
-        }
-        if (works != null) {
-            for (Work work : works) {
+
+        if (works != null)
+            for (Work work : works)
                 ZooKeeperManager.createWork(jobID, name, work.getClass().getSimpleName());
-                        }
-        }
-        if (aggregation != null) {
+
+
+        if (aggregation != null)
             ZooKeeperManager.createAggregation(jobID, name, aggregation.getClass().getSimpleName());
+
+
+        if (input != null)
+            ZooKeeperManager.createInformationFile(jobID, name, "input", input);
+
+        if (output != null)
+            ZooKeeperManager.createInformationFile(jobID, name, "output", output);
+
+        if (collector != null) {
+            ZooKeeperManager.createInformationFile(jobID, name, "server", "collector");
+            return;
         }
+
+        if (works != null) {
+            ZooKeeperManager.createInformationFile(jobID, name, "server", "work");
+            return;
+        }
+
+        ZooKeeperManager.createInformationFile(jobID, name, "server", "aggregation");
     }
 
     public void start(int jobID) {
