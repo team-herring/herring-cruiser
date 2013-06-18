@@ -1,6 +1,7 @@
 package org.herring.cruiser.core.model;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -83,6 +84,8 @@ public class JobCommand implements Serializable{
     }
 
     public void putExtra(String key, Object val){
+        if (extra != null)
+            extra = new HashMap<String, Object>();
         this.extra.put(key, val);
     }
 
