@@ -1,7 +1,10 @@
 package org.herring.cruiser.container;
 
+import org.herring.cruiser.core.model.JobCommand;
 import org.herring.cruiser.core.request.Request;
 import org.herring.cruiser.server.service.CruiserService;
+import org.herring.cruiser.server.service.worker.WorkerFindService;
+import org.herring.cruiser.server.service.worker.WorkerReturnService;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,9 +20,13 @@ public class CruiserServiceContainer {
 
     static {
         cruiserService = new HashMap<String, CruiserService>();
+        cruiserService.put("WorkerFindService", new WorkerFindService());
+        cruiserService.put("WorkerReturnService", new WorkerReturnService());
     }
 
     public static CruiserService findCruiseService(Request request){
-        return cruiserService.get(request.getCommand());
+        JobCommand command = (JobCommand) request.getData();
+        return cruiserService.get(command.getServiceName());
     }
 }
+

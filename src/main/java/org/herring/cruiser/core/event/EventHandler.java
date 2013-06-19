@@ -1,6 +1,6 @@
 package org.herring.cruiser.core.event;
 
-import org.herring.protocol.NetworkContext;
+import org.herring.core.protocol.NetworkContext;
 
 /**
  * Description.

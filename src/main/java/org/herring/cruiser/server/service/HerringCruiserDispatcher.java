@@ -27,12 +27,11 @@ public class HerringCruiserDispatcher implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(request.getData());
         CruiserService cruiserService = CruiserServiceContainer.findCruiseService(request);
         try {
             cruiserService.service(request, response);
         } catch (IOException e) {
-            logger.error(e.getStackTrace());
+            e.printStackTrace();
         }
         response.close();
     }

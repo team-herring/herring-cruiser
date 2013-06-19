@@ -1,7 +1,7 @@
 package org.herring.cruiser.core.response;
 
-import org.herring.protocol.NetworkContext;
-import org.herring.protocol.handler.MessageHandler;
+import org.herring.core.protocol.NetworkContext;
+import org.herring.core.protocol.handler.MessageHandler;
 
 /**
  * Description.
@@ -19,16 +19,16 @@ public class Response {
     }
 
     public void sendObject(Object data){
-        context.sendObject(data, messageHandler);
+        context.sendObject(data);
     }
 
     public void sendObject(Object data, MessageHandler messageHandler){
         this.messageHandler = messageHandler;
-        context.sendObject(data, messageHandler);
+        context.sendObject(data);
     }
 
     public void close(){
-        context.close(messageHandler);
+        context.close();
     }
 
 }

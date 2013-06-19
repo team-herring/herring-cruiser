@@ -101,6 +101,11 @@ public class JobCommand implements Serializable{
         this.field = field;
     }
 
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -123,5 +128,9 @@ public class JobCommand implements Serializable{
         result = 31 * result + (serviceName != null ? serviceName.hashCode() : 0);
         result = 31 * result + (field != null ? field.hashCode() : 0);
         return result;
+    }
+
+    public JobCommand copy(){
+        return new JobCommand(jobID, groupName, serviceName);
     }
 }

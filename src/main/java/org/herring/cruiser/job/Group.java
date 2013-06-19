@@ -1,6 +1,7 @@
 package org.herring.cruiser.job;
 
 import org.apache.zookeeper.KeeperException;
+import org.herring.core.protocol.NetworkContext;
 import org.herring.cruiser.container.worker.Worker;
 import org.herring.cruiser.container.worker.WorkerManager;
 import org.herring.cruiser.core.event.EventHandler;
@@ -11,7 +12,6 @@ import org.herring.cruiser.core.service.aggregate.Aggregation;
 import org.herring.cruiser.core.service.group.Collector;
 import org.herring.cruiser.core.service.work.Work;
 import org.herring.cruiser.core.zookeeper.ZooKeeperManager;
-import org.herring.protocol.NetworkContext;
 
 import java.io.IOException;
 import java.io.Serializable;

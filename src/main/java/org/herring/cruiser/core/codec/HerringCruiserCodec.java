@@ -1,7 +1,7 @@
 package org.herring.cruiser.core.codec;
 
+import org.herring.core.protocol.codec.HerringCodec;
 import org.herring.cruiser.core.request.HerringRequestSelector;
-import org.herring.protocol.codec.HerringCodec;
 
 import java.nio.ByteBuffer;
 
@@ -11,7 +11,7 @@ import java.nio.ByteBuffer;
  * @author Youngdeok Kim
  * @since 1.0
  */
-public class HerringCruiserCodec implements HerringCodec{
+public class HerringCruiserCodec implements HerringCodec {
     @Override
     public byte[] encode(Object data) throws Exception {
         ByteBuffer byteBuffer = (ByteBuffer) data;

@@ -1,12 +1,12 @@
 package org.herring.cruiser.core.network;
 
+import org.herring.core.protocol.ClientComponent;
+import org.herring.core.protocol.NetworkContext;
+import org.herring.core.protocol.codec.HerringCodec;
+import org.herring.core.protocol.handler.MessageHandler;
 import org.herring.cruiser.core.codec.HerringCruiserCodec;
 import org.herring.cruiser.core.event.EventHandler;
 import org.herring.cruiser.core.model.JobCommand;
-import org.herring.protocol.ClientComponent;
-import org.herring.protocol.NetworkContext;
-import org.herring.protocol.codec.HerringCodec;
-import org.herring.protocol.handler.MessageHandler;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -36,7 +36,6 @@ public class MessageSender {
         objectOutputStream.writeObject(jobCommand);
 
         ByteBuffer buffer = ByteBuffer.wrap(outputStream.toByteArray());
-        MessageSender sender = new MessageSender(ip, port);
         send(buffer, eventHandler);
     }
 
@@ -52,24 +51,13 @@ public class MessageSender {
 
         MessageHandler handler = new MessageHandler() {
             @Override
-            public void messageArrived(NetworkContext context, Object data) throws Exception {
-                eventHandler.handler(context, data);
-//                clientComponent.stop();
-            }
-
-            @Override
-            public void channelReady(NetworkContext context) throws Exception {
-                System.out.println("연결 준비");
+            public boolean messageArrived(NetworkContext networkContext, Object o) throws Exception {
+                return false;
             }
 
             @Override
             public void channelInactive(NetworkContext context) throws Exception {
                 System.out.println("연결 끊어짐");
-            }
-
-            @Override
-            public void channelClosed(NetworkContext context) throws Exception {
-                System.out.println("연결 종료됨");
             }
 
             @Override
@@ -81,8 +69,8 @@ public class MessageSender {
         try {
             clientComponent = new ClientComponent(ip, port, codec, handler);
             clientComponent.start();
-            clientComponent.getChannel().write(messageBuffer);
-            clientComponent.getChannel().flush();
+            clientComponent.getNetworkContext().getChannel().write(messageBuffer);
+            clientComponent.getNetworkContext().getChannel().flush();
         } catch (Exception e) {
             e.printStackTrace();
             clientComponent.stop();

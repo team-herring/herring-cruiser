@@ -37,7 +37,7 @@ public class Job {
             }
 
             for (Group group : groups) {
-//                group.start(jobID);
+                group.start(jobID);
             }
         } catch (KeeperException e) {
             e.printStackTrace();

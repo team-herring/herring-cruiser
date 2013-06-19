@@ -8,13 +8,12 @@
     <artifactId>herring-cruiser</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <github.global.server>github</github.global.server>
+    </properties>
+
     <dependencies>
         <!--Herring-->
-        <dependency>
-            <groupId>org.herring</groupId>
-            <artifactId>herring-protocol</artifactId>
-            <version>0.2-SNAPSHOT</version>
-        </dependency>
         <dependency>
             <groupId>org.herring</groupId>
             <artifactId>herring-core</artifactId>
@@ -36,20 +35,56 @@
 
     <repositories>
         <repository>
-            <id>central</id>
-            <url>http://maven.chiwanpark.com/content/groups/public</url>
+            <id>github</id>
+            <name>GitHub Herring Project Maven Repository</name>
+            <url>https://raw.github.com/team-herring/team-herring.github.io/mvn-repo</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
         </repository>
     </repositories>
 
     <distributionManagement>
         <repository>
-            <id>maven.chiwanpark.com</id>
-            <url>http://maven.chiwanpark.com/content/repositories/releases</url>
+            <id>github</id>
+            <name>GitHub Herring Project Maven Repository</name>
+            <url>https://raw.github.com/team-herring/team-herring.github.io/mvn-repo</url>
         </repository>
         <snapshotRepository>
-            <id>maven.chiwanpark.com</id>
-            <url>http://maven.chiwanpark.com/content/repositories/snapshots/</url>
+            <id>github</id>
+            <name>GitHub Herring Project Maven Repository</name>
+            <url>https://raw.github.com/team-herring/team-herring.github.io/mvn-repo</url>
         </snapshotRepository>
     </distributionManagement>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.8</version>
+                <configuration>
+                    <message>Maven artifacts for ${project.artifactId} ${project.version}</message>
+                    <noJekyll>true</noJekyll>
+                    <merge>true</merge>
+                    <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+                    <branch>refs/heads/mvn-repo</branch>
+                    <includes>
+                        <include>**/*</include>
+                    </includes>
+                    <repositoryName>team-herring.github.io</repositoryName>
+                    <repositoryOwner>team-herring</repositoryOwner>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>deploy</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
